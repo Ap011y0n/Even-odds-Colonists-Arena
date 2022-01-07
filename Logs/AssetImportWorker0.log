@@ -6453,3 +6453,4 @@ Received Import Request.
   path: Assets/Resources/Kyle Test.unity
   artifactKey: Guid(610aa2b9221e35545976289518b7534d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
 Start importing Assets/Resources/Kyle Test.unity using Guid(610aa2b9221e35545976289518b7534d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a61a49e238c1e6414962d94978bec2c4') in 0.015926 seconds 
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
