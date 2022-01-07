@@ -39,7 +39,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
     bool IsFiring;
 
     [Tooltip("The current Health of our player")]
-    public float Health = 1f;
+    public float Health = 100f;
 
     [Tooltip("The local player instance. Use this to know if the local player is represented in the Scene")]
     public static GameObject LocalPlayerInstance;
@@ -102,7 +102,8 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
             ProcessInputs();
             if (Health <= 0f)
             {
-                GameManager.Instance.LeaveRoom();
+                // GameManager.Instance.LeaveRoom();
+                die();
             }
         }
         // trigger Beams active state
@@ -122,11 +123,11 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
         }
         // We are only interested in Beamers
         // we should be using tags but for the sake of distribution, let's simply check by name.
-        if (!other.name.Contains("Beam"))
+        if (other.CompareTag("bullet"))
         {
-            return;
+            Health -= 10f;
+            
         }
-        Health -= 0.1f;
     }
 
     void OnTriggerStay(Collider other)
@@ -170,6 +171,17 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
+    void die()
+    {
 
+        if (photonView.IsMine)
+        {
+            GameManager.Instance.AddRespawn();
+            //GameManager manager = GameManager.Instance;
+            //manager.AddRespawn();
+            PlayerManager.LocalPlayerInstance = null;
+            PhotonNetwork.Destroy(photonView);
+        }
+    }
     #endregion
 }

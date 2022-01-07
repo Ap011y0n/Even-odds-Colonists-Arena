@@ -16,7 +16,9 @@ public class GameManager : MonoBehaviourPunCallbacks
     #region Photon Callbacks
 
     public static GameManager Instance;
-
+    private bool respawn = false;
+    public int respawnTime = 5;
+    private float respawnTimer = 0;
     /// <summary>
     /// Called when the local player left the room. We need to load the launcher scene.
     /// </summary>
@@ -25,6 +27,11 @@ public class GameManager : MonoBehaviourPunCallbacks
     void Start()
     {
         Instance = this;
+        instantiatePlayer();
+    }
+
+    void instantiatePlayer()
+    {
         if (playerPrefab == null)
         {
             Debug.LogError("<Color=Red><a>Missing</a></Color> playerPrefab Reference. Please set it up in GameObject 'Game Manager'", this);
@@ -45,6 +52,23 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
     }
 
+    private void Update()
+    {
+        if(respawn)
+        {
+            respawnTimer += Time.deltaTime;
+            if(respawnTimer>=respawnTime)
+            {
+                respawn = false;
+                instantiatePlayer();
+            }
+        }
+    }
+    public void AddRespawn()
+    {
+        respawnTimer = 0;
+        respawn = true;
+    }
     public override void OnPlayerEnteredRoom(Player other)
     {
         Debug.LogFormat("OnPlayerEnteredRoom() {0}", other.NickName); // not seen if you're the player connecting
