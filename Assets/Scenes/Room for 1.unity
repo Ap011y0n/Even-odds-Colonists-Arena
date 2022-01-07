@@ -992,6 +992,10 @@ PrefabInstance:
       propertyPath: playerPrefab
       value: 
       objectReference: {fileID: 6983088491053165949, guid: 6f7ecdbd5e7fcd54dae767e722339ecf, type: 3}
+    - target: {fileID: 668571973155812705, guid: c30edfa32df11194ea9aaae968942162, type: 3}
+      propertyPath: secCameraObj
+      value: 
+      objectReference: {fileID: 855293045}
     - target: {fileID: 6180957951032797594, guid: c30edfa32df11194ea9aaae968942162, type: 3}
       propertyPath: m_Name
       value: GameManager

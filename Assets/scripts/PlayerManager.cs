@@ -177,6 +177,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
         if (photonView.IsMine)
         {
             GameManager.Instance.AddRespawn();
+            GameManager.Instance.secCameraObj.SetActive(true);
             //GameManager manager = GameManager.Instance;
             //manager.AddRespawn();
             PlayerManager.LocalPlayerInstance = null;

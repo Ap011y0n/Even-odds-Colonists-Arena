@@ -13,8 +13,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     [Tooltip("The prefab to use for representing the player")]
     public GameObject playerPrefab;
 
-    #region Photon Callbacks
-
+    public GameObject secCameraObj;
     public static GameManager Instance;
     private bool respawn = false;
     public int respawnTime = 5;
@@ -23,6 +22,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     /// Called when the local player left the room. We need to load the launcher scene.
     /// </summary>
     /// 
+
+    #region Photon Callbacks
 
     void Start()
     {
@@ -40,6 +41,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             if (PlayerManager.LocalPlayerInstance == null)
             {
+                secCameraObj.SetActive(false);
                 Debug.LogFormat("We are Instantiating LocalPlayer from {0}", SceneManagerHelper.ActiveSceneName);
                 // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
                 PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
@@ -66,6 +68,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
     public void AddRespawn()
     {
+
         respawnTimer = 0;
         respawn = true;
     }
