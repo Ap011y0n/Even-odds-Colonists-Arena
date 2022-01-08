@@ -4,6 +4,9 @@ using UnityEngine.EventSystems;
 using Photon.Pun;
 
 using System.Collections;
+using System.Collections.Generic;
+
+
 
 public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
 {
@@ -18,12 +21,23 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
             // We own this player: send the others our data
             stream.SendNext(IsFiring);
             stream.SendNext(Health);
+            stream.SendNext(ChangeGun);
+            stream.SendNext(activegun.name);
+            stream.SendNext(deleteFloorGun);
+
+            if (ChangeGun)
+                ChangeGun = false;
+            newGunName = "";
         }
         else
         {
             // Network player, receive data
             this.IsFiring = (bool)stream.ReceiveNext();
             this.Health = (float)stream.ReceiveNext();
+            this.ChangeGun = (bool)stream.ReceiveNext();
+            this.newGunName = (string)stream.ReceiveNext();
+            this.deleteFloorGun = (bool)stream.ReceiveNext();
+            Debug.LogWarning(newGunName);
         }
     }
 
@@ -37,6 +51,9 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
     private GameObject beams;
     //True, when the user is firing
     bool IsFiring;
+    bool ChangeGun;
+    [HideInInspector]
+    public bool deleteFloorGun = false;
 
     [Tooltip("The current Health of our player")]
     public float Health = 100f;
@@ -45,8 +62,13 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
     public static GameObject LocalPlayerInstance;
 
     #endregion
-    public GameObject bullet;
-    public GameObject gun;
+    // public GameObject bullet;
+    //public GameObject gun;
+    public GameObject camera;
+    public GameObject activegun;
+    private string newGunName = "";
+    private string foundWeapon;
+    public List<string> weaponNames = new List<string>(); 
     #region MonoBehaviour CallBacks
 
     /// <summary>
@@ -109,10 +131,63 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
         // trigger Beams active state
         if (IsFiring)
         {
+            if(activegun != null)
+            activegun.GetComponent<weapon>().fire();
+            else
+            {
+                Debug.Log("Can't find gun");
+                changeGun();
+            }
             // beams.SetActive(IsFiring);
-            Instantiate(bullet, gun.transform.position, gun.transform.rotation);
+
+
         }
+        if (ChangeGun)
+        {
+
+            changeGun();
+        }
+        
+           
        
+    }
+    void changeGun()
+    {
+            Debug.Log("finding new gun");
+
+            if (!photonView.IsMine)
+            {
+                Debug.LogWarning("CHANGEGUN");
+            if(activegun != null)
+                activegun.SetActive(false);
+
+                GameObject[] guns = GameObject.FindGameObjectsWithTag("gun");
+
+                float distance = 100;
+                for (int i = 0; i < guns.Length; i++)
+                {
+                    Debug.Log(newGunName);
+
+                    Debug.Log(guns[i].name);
+                    Debug.Log(guns.Length);
+
+                    float newDistance = Vector3.Distance(transform.position, guns[i].transform.position);
+                    if (newDistance <= distance && guns[i].name == newGunName)
+                    {
+                        Debug.Log("Final gun" + guns[i].name);
+
+                        ChangeGun = false;
+                        distance = newDistance;
+                        activegun = guns[i];
+                        activegun.GetComponent<Collider>().enabled = false;
+                    }
+                }
+
+
+
+            }
+
+        
     }
 
     void OnTriggerEnter(Collider other)
@@ -126,8 +201,9 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
         if (other.CompareTag("bullet"))
         {
             Health -= 10f;
-            
         }
+
+
     }
 
     void OnTriggerStay(Collider other)
@@ -137,14 +213,28 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
         {
             return;
         }
-        // We are only interested in Beamers
-        // we should be using tags but for the sake of distribution, let's simply check by name.
-        if (!other.name.Contains("Beam"))
+
+      
+        if(other.CompareTag("gun") && photonView.IsMine)
         {
-            return;
+
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                ChangeGun = true;
+                newGunName = other.gameObject.GetComponent<weapon>().weaponName;
+                Debug.Log(newGunName);
+                GameObject gun = PhotonNetwork.Instantiate(other.gameObject.GetComponent<weapon>().weaponName, 
+                    camera.transform.position/* + other.gameObject.GetComponent<weapon>().offset*/, 
+                    Quaternion.identity, 0);
+
+                activegun.SetActive(false);
+
+                activegun = gun;
+                activegun.GetComponent<Collider>().enabled = false;
+                deleteFloorGun = true;
+            }
         }
-        // we slowly affect health when beam is constantly hitting us, so player has to move to prevent death.
-        Health -= 0.1f * Time.deltaTime;
+ 
     }
     #endregion
 
