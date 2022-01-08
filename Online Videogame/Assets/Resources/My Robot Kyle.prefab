@@ -32,6 +32,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3160283681463552113}
+  - {fileID: 6446193621149048575}
   m_Father: {fileID: 6247530781049184110}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1636,12 +1637,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   beams: {fileID: 6359394028285047783}
   deleteFloorGun: 0
-  Health: 1
+  Health: 100
   camera: {fileID: 1167749058}
   activegun: {fileID: 7154349476646530813}
-  weaponNames:
-  - pistol
-  - rifle
+  weapons:
+  - {fileID: 7154349476646530813}
+  - {fileID: 1290199121128831091}
 --- !u!114 &7746404016077146754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2235,6 +2236,77 @@ Transform:
   m_Father: {fileID: 9187274511119866382}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &5189922056489367407
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1167749061}
+    m_Modifications:
+    - target: {fileID: 1257406363738909072, guid: f8b2733974b2b9e4e91af2fa9c57f2fb, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1257406363738909072, guid: f8b2733974b2b9e4e91af2fa9c57f2fb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.196
+      objectReference: {fileID: 0}
+    - target: {fileID: 1257406363738909072, guid: f8b2733974b2b9e4e91af2fa9c57f2fb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.311
+      objectReference: {fileID: 0}
+    - target: {fileID: 1257406363738909072, guid: f8b2733974b2b9e4e91af2fa9c57f2fb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.765
+      objectReference: {fileID: 0}
+    - target: {fileID: 1257406363738909072, guid: f8b2733974b2b9e4e91af2fa9c57f2fb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1257406363738909072, guid: f8b2733974b2b9e4e91af2fa9c57f2fb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1257406363738909072, guid: f8b2733974b2b9e4e91af2fa9c57f2fb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1257406363738909072, guid: f8b2733974b2b9e4e91af2fa9c57f2fb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1257406363738909072, guid: f8b2733974b2b9e4e91af2fa9c57f2fb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1257406363738909072, guid: f8b2733974b2b9e4e91af2fa9c57f2fb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1257406363738909072, guid: f8b2733974b2b9e4e91af2fa9c57f2fb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6476734675361779484, guid: f8b2733974b2b9e4e91af2fa9c57f2fb, type: 3}
+      propertyPath: m_Name
+      value: rifle
+      objectReference: {fileID: 0}
+    - target: {fileID: 6476734675361779484, guid: f8b2733974b2b9e4e91af2fa9c57f2fb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f8b2733974b2b9e4e91af2fa9c57f2fb, type: 3}
+--- !u!1 &1290199121128831091 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6476734675361779484, guid: f8b2733974b2b9e4e91af2fa9c57f2fb, type: 3}
+  m_PrefabInstance: {fileID: 5189922056489367407}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6446193621149048575 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1257406363738909072, guid: f8b2733974b2b9e4e91af2fa9c57f2fb, type: 3}
+  m_PrefabInstance: {fileID: 5189922056489367407}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8028301607659260375
 PrefabInstance:
   m_ObjectHideFlags: 0

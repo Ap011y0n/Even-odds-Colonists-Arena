@@ -12,8 +12,6 @@ GameObject:
   - component: {fileID: 8776765355288521266}
   - component: {fileID: 1491422200415753623}
   - component: {fileID: 5180268833974018888}
-  - component: {fileID: 8792586505701032400}
-  - component: {fileID: 4684052658992464138}
   m_Layer: 0
   m_Name: pistol
   m_TagString: gun
@@ -97,44 +95,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42aa57d01e66e774d82c3fd4b3496bf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 5256478703002811292, guid: 51247f2604e6a334da122dc63501fd83, type: 3}
+  projectile: {fileID: 5256478703002811292, guid: 51247f2604e6a334da122dc63501fd83, type: 3}
   shotCD: 0.5
-  offset: {x: 0.191, y: -0.324, z: 0.668}
-  HasParent: 1
   weaponName: pistol
---- !u!135 &8792586505701032400
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 874572677031847722}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.7769631
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4684052658992464138
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 874572677031847722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents:
-  - {fileID: 5180268833974018888}
-  sceneViewId: 0
-  InstantiationId: 0
-  isRuntimeInstantiated: 0

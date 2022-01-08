@@ -67,8 +67,8 @@ public class GameManager : MonoBehaviourPunCallbacks
         if (PhotonNetwork.IsMasterClient && spawnTimer >= spawnTime && spawned == true)
         {
             spawned = false;
-            spawnGun = PhotonNetwork.Instantiate("rifle", new Vector3(0f, 1f, 0f), Quaternion.identity, 0);
-            spawnGun.GetComponent<weapon>().HasParent = false;
+            spawnGun = PhotonNetwork.Instantiate("PickableRifle", new Vector3(0f, 1f, 0f), Quaternion.identity, 0);
+         //   spawnGun.GetComponent<weapon>().HasParent = false;
         }
 
         if (respawn)
