@@ -22,12 +22,9 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
             stream.SendNext(IsFiring);
             stream.SendNext(Health);
             stream.SendNext(ChangeGun);
-            stream.SendNext(activegun.name);
+            stream.SendNext(activegun.GetComponent<weapon>().weaponName);
             stream.SendNext(deleteFloorGun);
 
-            if (ChangeGun)
-                ChangeGun = false;
-            newGunName = "";
         }
         else
         {
@@ -35,9 +32,9 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
             this.IsFiring = (bool)stream.ReceiveNext();
             this.Health = (float)stream.ReceiveNext();
             this.ChangeGun = (bool)stream.ReceiveNext();
-            this.newGunName = (string)stream.ReceiveNext();
+            this.currentGunName = (string)stream.ReceiveNext();
             this.deleteFloorGun = (bool)stream.ReceiveNext();
-            Debug.LogWarning(newGunName);
+            Debug.LogWarning(currentGunName);
         }
     }
 
@@ -66,9 +63,10 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
     //public GameObject gun;
     public GameObject camera;
     public GameObject activegun;
-    private string newGunName = "";
+    private string currentGunName = "";
     private string foundWeapon;
-    public List<string> weaponNames = new List<string>(); 
+    public List<GameObject> weapons = new List<GameObject>();
+
     #region MonoBehaviour CallBacks
 
     /// <summary>
@@ -142,10 +140,11 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
 
 
         }
-        if (ChangeGun)
+        if (ChangeGun || currentGunName != activegun.GetComponent<weapon>().weaponName)
         {
 
             changeGun();
+
         }
         
            
@@ -153,41 +152,26 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
     }
     void changeGun()
     {
+
             Debug.Log("finding new gun");
 
-            if (!photonView.IsMine)
+        if (!photonView.IsMine)
+        {
+            for (int i = 0; i < weapons.Count; i++)
             {
-                Debug.LogWarning("CHANGEGUN");
-            if(activegun != null)
-                activegun.SetActive(false);
-
-                GameObject[] guns = GameObject.FindGameObjectsWithTag("gun");
-
-                float distance = 100;
-                for (int i = 0; i < guns.Length; i++)
+                if (weapons[i].GetComponent<weapon>().weaponName == currentGunName)
                 {
-                    Debug.Log(newGunName);
-
-                    Debug.Log(guns[i].name);
-                    Debug.Log(guns.Length);
-
-                    float newDistance = Vector3.Distance(transform.position, guns[i].transform.position);
-                    if (newDistance <= distance && guns[i].name == newGunName)
-                    {
-                        Debug.Log("Final gun" + guns[i].name);
-
-                        ChangeGun = false;
-                        distance = newDistance;
-                        activegun = guns[i];
-                        activegun.GetComponent<Collider>().enabled = false;
-                    }
+                    ChangeGun = false;
+                    activegun.SetActive(false);
+                    activegun = weapons[i];
+                    activegun.SetActive(true);
                 }
-
-
 
             }
 
-        
+        }
+        else
+            ChangeGun = false;
     }
 
     void OnTriggerEnter(Collider other)
@@ -215,22 +199,29 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
         }
 
       
-        if(other.CompareTag("gun") && photonView.IsMine)
+        if(other.CompareTag("pickableWeapon") && photonView.IsMine)
         {
 
             if (Input.GetKeyDown(KeyCode.E))
             {
-                ChangeGun = true;
-                newGunName = other.gameObject.GetComponent<weapon>().weaponName;
-                Debug.Log(newGunName);
-                GameObject gun = PhotonNetwork.Instantiate(other.gameObject.GetComponent<weapon>().weaponName, 
-                    camera.transform.position/* + other.gameObject.GetComponent<weapon>().offset*/, 
-                    Quaternion.identity, 0);
+                currentGunName = other.gameObject.GetComponent<PickableWeapon>().weaponName;
+                Debug.Log(currentGunName);
 
-                activegun.SetActive(false);
 
-                activegun = gun;
-                activegun.GetComponent<Collider>().enabled = false;
+                for (int i = 0; i < weapons.Count; i++)
+                {
+                    Debug.Log(weapons[i].GetComponent<weapon>().weaponName);
+
+                    if (weapons[i].GetComponent<weapon>().weaponName == currentGunName)
+                    {
+                        ChangeGun = true;
+                        activegun.SetActive(false);
+                        activegun = weapons[i];
+                        activegun.SetActive(true);
+                    }
+
+                }
+
                 deleteFloorGun = true;
             }
         }
