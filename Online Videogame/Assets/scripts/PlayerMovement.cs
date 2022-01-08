@@ -14,6 +14,13 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     public float groundDistance = 0.4f;
     public LayerMask floorMask;
     bool isGrounded;
+
+    public Animator animator;
+    Vector2 currentAnimBlendVec;
+    Vector2 animVelocity;
+
+    [SerializeField]
+    private float animSmoothTime = 0.1f;
     void Update()
     {
         if (photonView.IsMine == false && PhotonNetwork.IsConnected == true)
@@ -31,10 +38,14 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(3 * -2 * gravity);
+            animator.SetTrigger("Jump");
         }
 
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
+        Vector2 input = new Vector2(x, z);
+
+        currentAnimBlendVec = Vector2.SmoothDamp(currentAnimBlendVec, input, ref animVelocity, animSmoothTime);
 
         Vector3 move = transform.right * x + transform.forward * z;
         controller.Move(move * speed * Time.deltaTime);
@@ -42,6 +53,9 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
 
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+
+        animator.SetFloat("MoveX", currentAnimBlendVec.x);
+        animator.SetFloat("MoveZ", currentAnimBlendVec.y);
 
     }
 }
