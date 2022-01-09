@@ -19,10 +19,6 @@ public class GameManager : MonoBehaviourPunCallbacks
     private bool respawn = false;
     public int respawnTime = 5;
     private float respawnTimer = 0;
-    private int spawnTime = 10;
-    private float spawnTimer = 0;
-    public GameObject spawnGun = null;
-    private bool spawned = true;
     /// <summary>
     /// Called when the local player left the room. We need to load the launcher scene.
     /// </summary>
@@ -63,14 +59,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     private void Update()
     {
-        spawnTimer += Time.deltaTime;
-        if (PhotonNetwork.IsMasterClient && spawnTimer >= spawnTime && spawned == true)
-        {
-            spawned = false;
-            spawnGun = PhotonNetwork.Instantiate("PickableRifle", new Vector3(0f, 1f, 0f), Quaternion.identity, 0);
-         //   spawnGun.GetComponent<weapon>().HasParent = false;
-        }
-
+       
         if (respawn)
         {
             respawnTimer += Time.deltaTime;

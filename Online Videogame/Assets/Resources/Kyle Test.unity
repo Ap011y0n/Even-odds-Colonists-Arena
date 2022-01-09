@@ -415,6 +415,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1224226279036181354, guid: 6f7ecdbd5e7fcd54dae767e722339ecf, type: 3}
+      propertyPath: sceneViewId
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6247530781049184110, guid: 6f7ecdbd5e7fcd54dae767e722339ecf, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -462,6 +466,10 @@ PrefabInstance:
     - target: {fileID: 6983088491053165949, guid: 6f7ecdbd5e7fcd54dae767e722339ecf, type: 3}
       propertyPath: m_Name
       value: My Robot Kyle
+      objectReference: {fileID: 0}
+    - target: {fileID: 8690743794814758094, guid: 6f7ecdbd5e7fcd54dae767e722339ecf, type: 3}
+      propertyPath: sceneViewId
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f7ecdbd5e7fcd54dae767e722339ecf, type: 3}
