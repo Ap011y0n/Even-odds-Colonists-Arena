@@ -314,11 +314,11 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
                 IsFiring = false;
             }
         }
-        if(Input.GetKeyDown(KeyCode.Alpha1))
+        if(Input.GetKeyDown(KeyCode.Alpha1) && weaponSlots[0] != null)
         {
             swap1 = true;
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.Alpha2) && weaponSlots[1] != null)
         {
             swap2 = true;
         }
