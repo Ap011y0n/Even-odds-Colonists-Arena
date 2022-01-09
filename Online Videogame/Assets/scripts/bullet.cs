@@ -7,6 +7,7 @@ public class bullet : MonoBehaviour
     public float speed;
     public Rigidbody body;
     public float lifetime;
+    public string parent;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,5 +20,13 @@ public class bullet : MonoBehaviour
     {
 
         body.velocity = transform.forward * speed;
+    }
+    public void setParent(string obj)
+    {
+        parent = obj;
+    }
+    public string returnParent()
+    {
+        return parent;
     }
 }

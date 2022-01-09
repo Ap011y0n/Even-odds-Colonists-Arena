@@ -9,6 +9,7 @@ public class weapon : MonoBehaviour
     public float shotCD = 1;
     float lastShot = 0;
     public string weaponName;
+    public GameObject player;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,7 +36,7 @@ public class weapon : MonoBehaviour
         {
             lastShot = 0;
             Instantiate(projectile, transform.position, transform.rotation);
-
+            projectile.GetComponent<bullet>().setParent(player.GetComponent<PlayerManager>().photonView.Owner.NickName);
         }
     }
 

@@ -16,6 +16,8 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
+        Debug.Log("Receiving info");
+
         if (stream.IsWriting)
         {
             // We own this player: send the others our data
@@ -83,6 +85,9 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
     [Tooltip("The Player's UI GameObject Prefab")]
     [SerializeField]
     public GameObject PlayerUiPrefab;
+    public GameObject ScoreUiPrefab;
+
+
     private PlayerUI myUI;
 
     #region MonoBehaviour CallBacks
@@ -125,21 +130,29 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
         {
             Debug.LogWarning("<Color=Red><a>Missing</a></Color> PlayerUiPrefab reference on player Prefab.", this);
         }
+        ScoreCounter.instance.requestScore(photonView.Owner.NickName);
 
         weaponSlots[0] = weapons[0];
         weaponSlots[1] = null;
+    
+
     }
-   
+
     void Update()
     {
+        if(myUI == null && !photonView.IsMine)
+            ScoreCounter.instance.requestScore(photonView.Owner.NickName);
+
         if (myUI == null && photonView.IsMine)
         {
+            ScoreCounter.instance.requestScore(photonView.Owner.NickName);
             GameObject _uiGo = Instantiate(PlayerUiPrefab);
             _uiGo.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
             myUI = _uiGo.GetComponent<PlayerUI>();
         }
 
-
+        if (photonView.IsMine)
+            GameManager.Instance.secCameraObj.SetActive(false);
 
         if (photonView.IsMine)
         {
@@ -233,15 +246,26 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
 
     void OnTriggerEnter(Collider other)
     {
-        if (!photonView.IsMine)
-        {
-            return;
-        }
+        
+
+        //if (!photonView.IsMine)
+        //{
+        //    return;
+        //}
         // We are only interested in Beamers
         // we should be using tags but for the sake of distribution, let's simply check by name.
         if (other.CompareTag("bullet"))
         {
             Health -= 10f;
+            Debug.Log("ouchies" + Health.ToString());
+
+            if (PhotonNetwork.IsMasterClient && Health <= 0f)
+            {
+                string killer = other.GetComponent<bullet>().returnParent();
+                Debug.LogWarning(killer);
+                ScoreCounter.instance.AddScore(killer);
+
+            }
         }
 
 

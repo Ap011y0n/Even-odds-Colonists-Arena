@@ -1648,6 +1648,7 @@ MonoBehaviour:
   - {fileID: 7154349476646530813}
   - {fileID: 1290199121128831091}
   PlayerUiPrefab: {fileID: 523596221601087361, guid: fc4cd95d6ed984b488fb24cc1910ac52, type: 3}
+  ScoreUiPrefab: {fileID: 8539646383848421193, guid: d16ddc2171d243548a1ef115adb988ce, type: 3}
 --- !u!114 &7746404016077146754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2294,6 +2295,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1307983321058659198, guid: f8b2733974b2b9e4e91af2fa9c57f2fb, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 6983088491053165949}
     - target: {fileID: 6476734675361779484, guid: f8b2733974b2b9e4e91af2fa9c57f2fb, type: 3}
       propertyPath: m_Name
       value: rifle
@@ -2333,6 +2338,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.668
       objectReference: {fileID: 0}
+    - target: {fileID: 5180268833974018888, guid: ea13db7e986717247b8c142ee56cbea2, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 6983088491053165949}
     - target: {fileID: 8028301608269747193, guid: ea13db7e986717247b8c142ee56cbea2, type: 3}
       propertyPath: m_RootOrder
       value: 0
