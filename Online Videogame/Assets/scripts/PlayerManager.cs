@@ -79,6 +79,12 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
     private string foundWeapon;
     public List<GameObject> weapons = new List<GameObject>();
 
+
+    [Tooltip("The Player's UI GameObject Prefab")]
+    [SerializeField]
+    public GameObject PlayerUiPrefab;
+    private PlayerUI myUI;
+
     #region MonoBehaviour CallBacks
 
     /// <summary>
@@ -106,31 +112,34 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
         DontDestroyOnLoad(this.gameObject);
     }
 
+
     void Start()
     {
-        //Photon.Pun.Demo.PunBasics.CameraWork _cameraWork = this.gameObject.GetComponent<Photon.Pun.Demo.PunBasics.CameraWork>();
-
-
-        //if (_cameraWork != null)
-        //{
-        //    if (photonView.IsMine)
-        //    {
-        //        _cameraWork.OnStartFollowing();
-        //    }
-        //}
-        //else
-        //{
-        //    Debug.LogError("<Color=Red><a>Missing</a></Color> CameraWork Component on playerPrefab.", this);
-        //}
+        if (PlayerUiPrefab != null && photonView.IsMine)
+        {
+            GameObject _uiGo = Instantiate(PlayerUiPrefab);
+            _uiGo.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
+            myUI = _uiGo.GetComponent<PlayerUI>();
+        }
+        else
+        {
+            Debug.LogWarning("<Color=Red><a>Missing</a></Color> PlayerUiPrefab reference on player Prefab.", this);
+        }
 
         weaponSlots[0] = weapons[0];
         weaponSlots[1] = null;
     }
-    /// <summary>
-    /// MonoBehaviour method called on GameObject by Unity on every frame.
-    /// </summary>
+   
     void Update()
     {
+        if (myUI == null && photonView.IsMine)
+        {
+            GameObject _uiGo = Instantiate(PlayerUiPrefab);
+            _uiGo.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
+            myUI = _uiGo.GetComponent<PlayerUI>();
+        }
+
+
 
         if (photonView.IsMine)
         {

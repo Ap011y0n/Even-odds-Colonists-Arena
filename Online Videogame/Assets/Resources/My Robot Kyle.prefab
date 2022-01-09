@@ -1647,6 +1647,7 @@ MonoBehaviour:
   weapons:
   - {fileID: 7154349476646530813}
   - {fileID: 1290199121128831091}
+  PlayerUiPrefab: {fileID: 523596221601087361, guid: fc4cd95d6ed984b488fb24cc1910ac52, type: 3}
 --- !u!114 &7746404016077146754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1728,7 +1729,7 @@ MonoBehaviour:
   floorMask:
     serializedVersion: 2
     m_Bits: 8
-  animator: {fileID: 0}
+  animator: {fileID: 7214706580047848186}
   animSmoothTime: 0.1
 --- !u!114 &656905620671622070
 MonoBehaviour:
