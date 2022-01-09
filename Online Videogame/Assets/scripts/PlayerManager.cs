@@ -21,9 +21,13 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
             // We own this player: send the others our data
             stream.SendNext(IsFiring);
             stream.SendNext(Health);
-            stream.SendNext(ChangeGun);
+            stream.SendNext(pickupGun);
+            stream.SendNext(changeGun);
             stream.SendNext(activegun.GetComponent<weapon>().weaponName);
             stream.SendNext(deleteFloorGun);
+            stream.SendNext(swap1);
+            stream.SendNext(swap2);
+
 
         }
         else
@@ -31,10 +35,12 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
             // Network player, receive data
             this.IsFiring = (bool)stream.ReceiveNext();
             this.Health = (float)stream.ReceiveNext();
-            this.ChangeGun = (bool)stream.ReceiveNext();
+            this.pickupGun = (bool)stream.ReceiveNext();
+            this.changeGun = (bool)stream.ReceiveNext();
             this.currentGunName = (string)stream.ReceiveNext();
             this.deleteFloorGun = (bool)stream.ReceiveNext();
-            Debug.LogWarning(currentGunName);
+            this.swap1 = (bool)stream.ReceiveNext();
+            this.swap2 = (bool)stream.ReceiveNext();
         }
     }
 
@@ -48,7 +54,8 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
     private GameObject beams;
     //True, when the user is firing
     bool IsFiring;
-    bool ChangeGun;
+    bool pickupGun;
+    bool changeGun;
     [HideInInspector]
     public bool deleteFloorGun = false;
 
@@ -63,7 +70,12 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
     //public GameObject gun;
     public GameObject camera;
     public GameObject activegun;
-    private string currentGunName = "";
+    public GameObject inactivegun = null;
+    private GameObject[] weaponSlots = new GameObject[2];
+    public bool swap1 = false;
+    public bool swap2 = false;
+
+    public string currentGunName = "pistol";
     private string foundWeapon;
     public List<GameObject> weapons = new List<GameObject>();
 
@@ -82,7 +94,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
         {
             beams.SetActive(false);
         }
-
+       
         // #Important
         // used in GameManager.cs: we keep track of the localPlayer instance to prevent instantiation when levels are synchronized
         if (photonView.IsMine)
@@ -110,6 +122,9 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
         //{
         //    Debug.LogError("<Color=Red><a>Missing</a></Color> CameraWork Component on playerPrefab.", this);
         //}
+
+        weaponSlots[0] = weapons[0];
+        weaponSlots[1] = null;
     }
     /// <summary>
     /// MonoBehaviour method called on GameObject by Unity on every frame.
@@ -134,23 +149,26 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
             else
             {
                 Debug.Log("Can't find gun");
-                changeGun();
+                pickGun();
             }
             // beams.SetActive(IsFiring);
 
 
         }
-        if (ChangeGun || currentGunName != activegun.GetComponent<weapon>().weaponName)
+        if (pickupGun || currentGunName != activegun.GetComponent<weapon>().weaponName)
         {
 
-            changeGun();
+            pickGun();
 
         }
-        
+        if (swap1)
+            swaptoSlot1();
+        if (swap2)
+            swaptoSlot2();
            
        
     }
-    void changeGun()
+    void pickGun()
     {
 
             Debug.Log("finding new gun");
@@ -161,8 +179,18 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
             {
                 if (weapons[i].GetComponent<weapon>().weaponName == currentGunName)
                 {
-                    ChangeGun = false;
+                    if (weaponSlots[1] == null)
+                        weaponSlots[1] = weapons[i];
+                    else if ((weaponSlots[1].GetComponent<weapon>().weaponName == activegun.GetComponent<weapon>().weaponName &&
+                        weaponSlots[1].GetComponent<weapon>().weaponName != currentGunName))
+                        weaponSlots[1] = weapons[i];
+                    else
+                        weaponSlots[0] = weapons[i];
+                    
+
+                    pickupGun = false;
                     activegun.SetActive(false);
+                    inactivegun = activegun;
                     activegun = weapons[i];
                     activegun.SetActive(true);
                 }
@@ -171,7 +199,27 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
 
         }
         else
-            ChangeGun = false;
+            pickupGun = false;
+    }
+   
+    void swaptoSlot1 ()
+    {
+        inactivegun = activegun;
+        activegun = weaponSlots[0];
+        inactivegun.SetActive(false);
+        activegun.SetActive(true);
+        swap1 = false;
+        currentGunName = activegun.GetComponent<weapon>().weaponName;
+
+    }
+    void swaptoSlot2()
+    {
+        inactivegun = activegun;
+        activegun = weaponSlots[1];
+        inactivegun.SetActive(false);
+        activegun.SetActive(true);
+        currentGunName = activegun.GetComponent<weapon>().weaponName;
+        swap2 = false;
     }
 
     void OnTriggerEnter(Collider other)
@@ -205,7 +253,6 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
             if (Input.GetKeyDown(KeyCode.E))
             {
                 currentGunName = other.gameObject.GetComponent<PickableWeapon>().weaponName;
-                Debug.Log(currentGunName);
 
 
                 for (int i = 0; i < weapons.Count; i++)
@@ -214,10 +261,18 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
 
                     if (weapons[i].GetComponent<weapon>().weaponName == currentGunName)
                     {
-                        ChangeGun = true;
+                        if (weaponSlots[1] == null)
+                            weaponSlots[1] = weapons[i];
+                        else if((weaponSlots[1].GetComponent<weapon>().weaponName == activegun.GetComponent<weapon>().weaponName &&
+                            weaponSlots[1].GetComponent<weapon>().weaponName != currentGunName))
+                            weaponSlots[1] = weapons[i];
+                        else
+                            weaponSlots[0] = weapons[i];
+                        pickupGun = true;
                         activegun.SetActive(false);
                         activegun = weapons[i];
                         activegun.SetActive(true);
+                        
                     }
 
                 }
@@ -249,6 +304,14 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
             {
                 IsFiring = false;
             }
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            swap1 = true;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            swap2 = true;
         }
     }
 

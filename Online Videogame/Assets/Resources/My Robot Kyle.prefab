@@ -1640,6 +1640,10 @@ MonoBehaviour:
   Health: 100
   camera: {fileID: 1167749058}
   activegun: {fileID: 7154349476646530813}
+  inactivegun: {fileID: 0}
+  swap1: 0
+  swap2: 0
+  currentGunName: pistol
   weapons:
   - {fileID: 7154349476646530813}
   - {fileID: 1290199121128831091}
@@ -1724,6 +1728,8 @@ MonoBehaviour:
   floorMask:
     serializedVersion: 2
     m_Bits: 8
+  animator: {fileID: 0}
+  animSmoothTime: 0.1
 --- !u!114 &656905620671622070
 MonoBehaviour:
   m_ObjectHideFlags: 0
