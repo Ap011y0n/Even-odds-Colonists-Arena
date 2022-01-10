@@ -45,8 +45,10 @@ public class PickableWeapon : MonoBehaviourPunCallbacks, IPunObservable
 
     public void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player") && photonView.IsMine)
+        if (other.CompareTag("Player"))
         {
+            Debug.Log("Collision");
+
             if (other.gameObject.GetComponent<PlayerManager>().deleteFloorGun)
             {
                 destroy = true;
@@ -55,11 +57,13 @@ public class PickableWeapon : MonoBehaviourPunCallbacks, IPunObservable
             else if(other.gameObject.GetComponent<PlayerManager>().weaponSlots[0].GetComponent<weapon>().weaponName == weaponName)
             {
                 destroy = true;
+                Debug.Log("Reload 1");
                 other.gameObject.GetComponent<PlayerManager>().weaponSlots[0].GetComponent<weapon>().setMaxAmmo();
             }
             else if (other.gameObject.GetComponent<PlayerManager>().weaponSlots[1] != null &&
                 other.gameObject.GetComponent<PlayerManager>().weaponSlots[1].GetComponent<weapon>().weaponName == weaponName)
             {
+                Debug.Log("Reload 2");
                 destroy = true;
                 other.gameObject.GetComponent<PlayerManager>().weaponSlots[1].GetComponent<weapon>().setMaxAmmo();
             }
