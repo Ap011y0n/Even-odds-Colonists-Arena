@@ -1638,9 +1638,13 @@ MonoBehaviour:
   beams: {fileID: 6359394028285047783}
   deleteFloorGun: 0
   Health: 100
+  currentBullets: 0
   camera: {fileID: 1167749058}
   activegun: {fileID: 7154349476646530813}
   inactivegun: {fileID: 0}
+  weaponSlots:
+  - {fileID: 0}
+  - {fileID: 0}
   swap1: 0
   swap2: 0
   currentGunName: pistol

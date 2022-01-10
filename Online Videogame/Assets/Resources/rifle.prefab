@@ -98,3 +98,6 @@ MonoBehaviour:
   projectile: {fileID: 5256478703002811292, guid: 51247f2604e6a334da122dc63501fd83, type: 3}
   shotCD: 0.2
   weaponName: rifle
+  player: {fileID: 0}
+  unlimitedAmmo: 0
+  ammo: 20

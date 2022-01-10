@@ -17,6 +17,9 @@ public class PlayerUI : MonoBehaviour
     [SerializeField]
     private Slider playerHealthSlider;
 
+    [SerializeField]
+    private Text playerBullets;
+
     private PlayerManager target;
 
 
@@ -34,6 +37,10 @@ public class PlayerUI : MonoBehaviour
         if (playerHealthSlider != null)
         {
             playerHealthSlider.value = target.Health;
+        }
+        if (playerBullets != null)
+        {
+            playerBullets.text = target.currentBullets.ToString();
         }
         if (target == null)
         {
