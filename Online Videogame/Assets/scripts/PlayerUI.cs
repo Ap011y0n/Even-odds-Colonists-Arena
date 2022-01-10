@@ -10,7 +10,8 @@ public class PlayerUI : MonoBehaviour
 
     [Tooltip("UI Text to display Player's Name")]
     [SerializeField]
-    private Text playerNameText;
+    private GameObject pNameText;
+    //private Text playerNameText;
 
 
     [Tooltip("UI Slider to display Player's Health")]
@@ -18,7 +19,8 @@ public class PlayerUI : MonoBehaviour
     private Slider playerHealthSlider;
 
     [SerializeField]
-    private Text playerBullets;
+    private GameObject pBulletsText;
+    //private Text playerBullets;
 
     private PlayerManager target;
 
@@ -38,9 +40,9 @@ public class PlayerUI : MonoBehaviour
         {
             playerHealthSlider.value = target.Health;
         }
-        if (playerBullets != null)
+        if (pBulletsText != null)
         {
-            playerBullets.text = target.currentBullets.ToString();
+            pBulletsText.GetComponent<TMPro.TextMeshProUGUI>().text = target.currentBullets.ToString();
         }
         if (target == null)
         {
@@ -63,9 +65,9 @@ public class PlayerUI : MonoBehaviour
         }
         // Cache references for efficiency
         target = _target;
-        if (playerNameText != null)
+        if (pNameText != null)
         {
-            playerNameText.text = target.photonView.Owner.NickName;
+            pNameText.GetComponent<TMPro.TextMeshProUGUI>().text = target.photonView.Owner.NickName;
         }
     }
 

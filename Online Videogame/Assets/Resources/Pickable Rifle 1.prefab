@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3659061625126656796}
   m_Layer: 0
   m_Name: Pickable Rifle 1
-  m_TagString: Untagged
+  m_TagString: pickableWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
