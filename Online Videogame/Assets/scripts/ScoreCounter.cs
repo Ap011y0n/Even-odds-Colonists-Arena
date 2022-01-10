@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+using Photon.Pun;
+using Photon.Realtime;
 public class ScoreCounter : MonoBehaviour
 {
    
@@ -16,9 +18,12 @@ public class ScoreCounter : MonoBehaviour
     public Dictionary<string, int> scores = new Dictionary<string, int>();
     public GameObject scoreUI;
     public GameObject UiPlayerPrefab;
+    public GameObject scoreSenderPrefab;
+
     List<request> requests = new List<request>();
     public float height = 20;
     public float width = 0;
+    public bool send = false;
     void Awake()
     {
 
@@ -32,6 +37,9 @@ public class ScoreCounter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (PhotonNetwork.IsMasterClient)
+             PhotonNetwork.Instantiate(this.scoreSenderPrefab.name, new Vector3(0f, 10f, 0f), Quaternion.identity, 0);
+
         scoreUI = GameObject.Find("ScorePanel");
         foreach (KeyValuePair<string, int> entry in scores)
         {
@@ -121,6 +129,7 @@ public class ScoreCounter : MonoBehaviour
 
     public void AddScore(string name)
     {
+            send = true;
        //Debug.LogError("Adding Score for " + name);
         for (int i = 0; i < childs.Count; i++)
         {

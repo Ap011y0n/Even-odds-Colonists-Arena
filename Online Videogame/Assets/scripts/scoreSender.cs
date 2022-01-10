@@ -4,52 +4,55 @@ using UnityEngine;
 
 using Photon.Pun;
 
-public class scoreSender : MonoBehaviourPunCallbacks, IPunObservable
+public class scoreSender : MonoBehaviourPunCallbacks
 {
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         Debug.Log("Receiving info");
 
-        if (stream.IsWriting)
-        {
-            stream.SendNext(scores);
-
-        }
-        else
-        {
-            this.scores = (Dictionary<string, int>)stream.ReceiveNext();
-            ScoreCounter.instance.scores = scores;
-            foreach (KeyValuePair<string, int> entry in scores)
-            {
-                Debug.Log(entry.Key + entry.Value.ToString());
-                ScoreCounter.instance.requestScore(entry.Key);
-                ScoreCounter.instance.ChangeScores();
-            }
-        }
+       
     }
 
     Dictionary<string, int> scores = new Dictionary<string, int>();
 
     // Start is called before the first frame update
+    private void Awake()
+    {
+        
+       
+    }
+
     void Start()
     {
-       
+        DontDestroyOnLoad(this.gameObject);
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (photonView.IsMine)
+        if (photonView.IsMine && ScoreCounter.instance.send)
         {
+            ScoreCounter.instance.send = false;
             scores = ScoreCounter.instance.scores;
-
-            //foreach (KeyValuePair<string, int> entry in scores)
-            //{
-            //    Debug.Log(entry.Key + entry.Value.ToString());
-
-            //}
+            photonView.RPC("updateValues", RpcTarget.AllBuffered, scores);
         }
 
+    }
+
+    [PunRPC]
+    void updateValues(Dictionary<string, int> scores)
+    {
+        Debug.Log("Hola");
+        this.scores = scores;
+        ScoreCounter.instance.scores = scores;
+        ScoreCounter.instance.ChangeScores();
+
+        foreach (KeyValuePair<string, int> entry in scores)
+        {
+            Debug.Log(entry.Key + entry.Value.ToString());
+            
+        }
     }
 }

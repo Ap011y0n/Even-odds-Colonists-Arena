@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviourPunCallbacks
 {
     [Tooltip("The prefab to use for representing the player")]
     public GameObject playerPrefab;
-    public GameObject scoreSenderPrefab;
     public GameObject weaponPrefab;
 
     public GameObject secCameraObj;
@@ -32,9 +31,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     void Start()
     {
         Instance = this;
-        if (PhotonNetwork.IsMasterClient)
-            PhotonNetwork.Instantiate(this.scoreSenderPrefab.name, new Vector3(0f, 10f, 0f), Quaternion.identity, 0);
-
+        
         instantiatePlayer();
         
 
