@@ -129,7 +129,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
         {
             Debug.LogWarning("<Color=Red><a>Missing</a></Color> PlayerUiPrefab reference on player Prefab.", this);
         }
-        ScoreCounter.instance.requestScore(photonView.Owner.NickName);
+        ScoreManager.instance.requestScore(photonView.Owner.NickName);
 
         weaponSlots[0] = weapons[0];
         weaponSlots[1] = null;
@@ -139,17 +139,19 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
 
     void Update()
     {
+
+        //WIP
         if(myUI == null && !photonView.IsMine)
-            ScoreCounter.instance.requestScore(photonView.Owner.NickName);
+            ScoreManager.instance.requestScore(photonView.Owner.NickName);
 
         if (myUI == null && photonView.IsMine)
         {
-            ScoreCounter.instance.requestScore(photonView.Owner.NickName);
+            ScoreManager.instance.requestScore(photonView.Owner.NickName);
             GameObject _uiGo = Instantiate(PlayerUiPrefab);
             _uiGo.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
             myUI = _uiGo.GetComponent<PlayerUI>();
         }
-
+        // WIP
         if (photonView.IsMine)
             GameManager.Instance.secCameraObj.SetActive(false);
 
@@ -262,7 +264,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
             {
                 string killer = other.GetComponent<bullet>().returnParent();
                 Debug.LogWarning(killer);
-                ScoreCounter.instance.AddScore(killer);
+                ScoreManager.instance.AddScore(killer);
 
             }
         }

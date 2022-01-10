@@ -15,16 +15,19 @@ public class GameManager : MonoBehaviourPunCallbacks
     public GameObject weaponPrefab;
 
     public GameObject secCameraObj;
+    public GameObject timeSenderPrefab;
+
     public static GameManager Instance;
     private bool respawn = false;
     public int respawnTime = 5;
     private float respawnTimer = 0;
+
     /// <summary>
     /// Called when the local player left the room. We need to load the launcher scene.
     /// </summary>
     /// 
 
-  
+
 
     #region Photon Callbacks
 
@@ -33,7 +36,10 @@ public class GameManager : MonoBehaviourPunCallbacks
         Instance = this;
         
         instantiatePlayer();
-        
+         if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.Instantiate(this.timeSenderPrefab.name, new Vector3(0f, 10f, 0f), Quaternion.identity, 0);
+        }
 
     }
 

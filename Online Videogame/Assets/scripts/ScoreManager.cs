@@ -1,14 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-
 using Photon.Pun;
-using Photon.Realtime;
-public class ScoreCounter : MonoBehaviour
+
+public class ScoreManager: MonoBehaviour
 {
    
-    public static ScoreCounter instance;
+    public static ScoreManager instance;
     public struct request
     {
        public string name;
@@ -38,7 +36,9 @@ public class ScoreCounter : MonoBehaviour
     void Start()
     {
         if (PhotonNetwork.IsMasterClient)
-             PhotonNetwork.Instantiate(this.scoreSenderPrefab.name, new Vector3(0f, 10f, 0f), Quaternion.identity, 0);
+        {
+            PhotonNetwork.Instantiate(this.scoreSenderPrefab.name, new Vector3(0f, 10f, 0f), Quaternion.identity, 0);
+        }
 
         scoreUI = GameObject.Find("ScorePanel");
         foreach (KeyValuePair<string, int> entry in scores)

@@ -32,10 +32,10 @@ public class scoreSender : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
-        if (photonView.IsMine && ScoreCounter.instance.send)
+        if (photonView.IsMine && ScoreManager.instance.send)
         {
-            ScoreCounter.instance.send = false;
-            scores = ScoreCounter.instance.scores;
+            ScoreManager.instance.send = false;
+            scores = ScoreManager.instance.scores;
             photonView.RPC("updateValues", RpcTarget.AllBuffered, scores);
         }
 
@@ -46,8 +46,8 @@ public class scoreSender : MonoBehaviourPunCallbacks
     {
         Debug.Log("Hola");
         this.scores = scores;
-        ScoreCounter.instance.scores = scores;
-        ScoreCounter.instance.ChangeScores();
+        ScoreManager.instance.scores = scores;
+        ScoreManager.instance.ChangeScores();
 
         foreach (KeyValuePair<string, int> entry in scores)
         {
