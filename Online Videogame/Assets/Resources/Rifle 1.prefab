@@ -79,7 +79,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 5256478703002811292, guid: 51247f2604e6a334da122dc63501fd83, type: 3}
   shotCD: 0.2
-  weaponName: rifle
+  weaponName: Rifle 1
+  player: {fileID: 0}
+  unlimitedAmmo: 0
+  ammo: 20
+  maxammo: 20
 --- !u!1 &5946913083773470056
 GameObject:
   m_ObjectHideFlags: 0
