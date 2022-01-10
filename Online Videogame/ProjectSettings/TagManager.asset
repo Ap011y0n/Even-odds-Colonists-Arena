@@ -8,6 +8,8 @@ TagManager:
   - gun
   - pickableWeapon
   - permanent
+  - speedBoost
+  - healthBoost
   layers:
   - Default
   - TransparentFX
