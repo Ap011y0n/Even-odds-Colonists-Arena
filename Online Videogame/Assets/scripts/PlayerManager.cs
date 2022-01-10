@@ -59,6 +59,8 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
     bool changeGun;
     [HideInInspector]
     public bool deleteFloorGun = false;
+    float speedBoostCounter = 0f;
+    bool speedBoost = false;
 
     [Tooltip("The current Health of our player")]
     public float Health = 100f;
@@ -194,6 +196,16 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
 
         currentBullets = activegun.GetComponent<weapon>().returnAmmo();
 
+        if (speedBoost == true)
+        {
+            speedBoostCounter++;
+        }
+        if(speedBoostCounter >= 10)
+        {
+            speedBoost = false;
+            speedBoostCounter = 0f;
+            GetComponent<PlayerMovement>().speed = GetComponent<PlayerMovement>().speed / 2;
+        }
 
     }
     void pickGun()
@@ -320,7 +332,19 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
                 deleteFloorGun = true;
             }
         }
- 
+        if(other.CompareTag("speedBoost") && photonView.IsMine)
+        {
+            speedBoostCounter = 0f;
+            speedBoost = true;
+            GetComponent<PlayerMovement>().speed = GetComponent<PlayerMovement>().speed * 2;
+        }
+        if (other.CompareTag("healthBoost") && photonView.IsMine)
+        {
+            Health += 20;
+            if (Health > 100)
+                Health = 100;
+        }
+
     }
     #endregion
 
