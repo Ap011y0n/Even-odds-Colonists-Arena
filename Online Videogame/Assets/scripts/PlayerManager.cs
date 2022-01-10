@@ -65,6 +65,8 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
     [Tooltip("The current Health of our player")]
     public float Health = 100f;
 
+    public float currentBullets;
+
     [Tooltip("The local player instance. Use this to know if the local player is represented in the Scene")]
     public static GameObject LocalPlayerInstance;
 
@@ -74,7 +76,8 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
     public GameObject camera;
     public GameObject activegun;
     public GameObject inactivegun = null;
-    private GameObject[] weaponSlots = new GameObject[2];
+    [HideInInspector]
+    public GameObject[] weaponSlots = new GameObject[2];
     public bool swap1 = false;
     public bool swap2 = false;
 
@@ -190,6 +193,8 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
             swaptoSlot1();
         if (swap2)
             swaptoSlot2();
+
+        currentBullets = activegun.GetComponent<weapon>().returnAmmo();
 
         if (speedBoost == true)
         {
@@ -314,6 +319,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
                             weaponSlots[1] = weapons[i];
                         else
                             weaponSlots[0] = weapons[i];
+
                         pickupGun = true;
                         activegun.SetActive(false);
                         activegun = weapons[i];

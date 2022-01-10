@@ -9,7 +9,7 @@ public class weaponSpawn : MonoBehaviourPunCallbacks
     // public static GameObject SpawnInstance;
     public float spawnTime;
     float counter = 0;
-    public GameObject spawnGun = null;
+    private GameObject spawnGun = null;
     bool spawned = false;
     public static weaponSpawn instance;
 

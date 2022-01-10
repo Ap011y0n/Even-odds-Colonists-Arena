@@ -50,7 +50,18 @@ public class PickableWeapon : MonoBehaviourPunCallbacks, IPunObservable
             if (other.gameObject.GetComponent<PlayerManager>().deleteFloorGun)
             {
                 destroy = true;
-
+                other.gameObject.GetComponent<PlayerManager>().deleteFloorGun = false;
+            }
+            else if(other.gameObject.GetComponent<PlayerManager>().weaponSlots[0].GetComponent<weapon>().weaponName == weaponName)
+            {
+                destroy = true;
+                other.gameObject.GetComponent<PlayerManager>().weaponSlots[0].GetComponent<weapon>().setMaxAmmo();
+            }
+            else if (other.gameObject.GetComponent<PlayerManager>().weaponSlots[1] != null &&
+                other.gameObject.GetComponent<PlayerManager>().weaponSlots[1].GetComponent<weapon>().weaponName == weaponName)
+            {
+                destroy = true;
+                other.gameObject.GetComponent<PlayerManager>().weaponSlots[1].GetComponent<weapon>().setMaxAmmo();
             }
         }
     }
