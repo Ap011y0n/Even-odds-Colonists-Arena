@@ -200,7 +200,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
         {
             speedBoostCounter++;
         }
-        if(speedBoostCounter >= 10)
+        if(speedBoostCounter >= 1000)
         {
             speedBoost = false;
             speedBoostCounter = 0f;

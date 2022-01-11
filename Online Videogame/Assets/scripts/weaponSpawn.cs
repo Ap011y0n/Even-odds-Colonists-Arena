@@ -12,6 +12,8 @@ public class weaponSpawn : MonoBehaviourPunCallbacks
     private GameObject spawnGun = null;
     bool spawned = false;
     public static weaponSpawn instance;
+    public GameObject gun;
+    string gunName = "PickableRifle";
 
 
     // Start is called before the first frame update
@@ -44,7 +46,10 @@ public class weaponSpawn : MonoBehaviourPunCallbacks
         {
             spawned = false;
             counter = 0;
-            spawnGun = PhotonNetwork.Instantiate("PickableRifle", new Vector3(0f, 1f, 0f), Quaternion.identity, 0);
+            if (gun != null)
+                spawnGun = PhotonNetwork.Instantiate(gun.name, transform.position, Quaternion.identity, 0);
+            else
+                spawnGun = PhotonNetwork.Instantiate(gunName, transform.position, Quaternion.identity, 0);
 
         }
 

@@ -9,7 +9,7 @@ public class TimeManager : MonoBehaviour
 {
     public static TimeManager instance;
 
-    public Text UI_timer;
+    public GameObject UI_timer;
     public int maxTime;
     public int update;
     private float timer;
@@ -26,8 +26,8 @@ public class TimeManager : MonoBehaviour
     void Start()
     {
         if (UI_timer == null)
-            UI_timer = GameObject.Find("Timer").GetComponent<Text>();
-        UI_timer.text = maxTime.ToString();
+            UI_timer = GameObject.Find("Timer");
+        UI_timer.GetComponent<TMPro.TextMeshProUGUI>().text = maxTime.ToString();
         timer = maxTime;
         update = maxTime - 1;
         DontDestroyOnLoad(this.gameObject);
@@ -43,8 +43,8 @@ public class TimeManager : MonoBehaviour
         if(timer <= update)
         {
             if (UI_timer == null)
-                UI_timer = GameObject.Find("Timer").GetComponent<Text>();
-            UI_timer.text = update.ToString();
+                UI_timer = GameObject.Find("Timer");
+            UI_timer.GetComponent<TMPro.TextMeshProUGUI>().text = update.ToString();
             update = (int)timer;
         }
         if (timer <= 0)

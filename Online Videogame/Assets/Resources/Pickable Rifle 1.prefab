@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3659061625126656796}
   m_Layer: 0
   m_Name: Pickable Rifle 1
-  m_TagString: Untagged
+  m_TagString: pickableWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -83,7 +83,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroy: 0
-  weaponName: 
+  weaponName: Rifle 1
 --- !u!1001 &460911129363006215
 PrefabInstance:
   m_ObjectHideFlags: 0
