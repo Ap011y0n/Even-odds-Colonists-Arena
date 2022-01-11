@@ -49,7 +49,7 @@ public class weapon : MonoBehaviour
                 if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, RayDistance))
                 {
                    GameObject enemy = hit.collider.gameObject;
-                    if (enemy.GetComponent<PlayerManager>() != null && enemy.GetComponent<PlayerManager>().photonView.IsMine)
+                    if (enemy.GetComponent<PlayerManager>() != null)
                         enemy.GetComponent<PlayerManager>().receiveRay(rayDamage, player.GetComponent<PlayerManager>().photonView.Owner.NickName);
                 }
             }
