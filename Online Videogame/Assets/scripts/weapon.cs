@@ -36,7 +36,7 @@ public class weapon : MonoBehaviour
 
     public void fire()
     {
-        if(lastShot >= shotCD && (ammo > 0 || unlimitedAmmo))
+        if(lastShot >= shotCD && (ammo > 0 || unlimitedAmmo) && !GameManager.Instance.GameEnded)
         {
             lastShot = 0;
             Instantiate(projectile, transform.position, transform.rotation);

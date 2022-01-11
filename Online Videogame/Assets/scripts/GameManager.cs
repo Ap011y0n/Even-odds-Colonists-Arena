@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     public int respawnTime = 5;
     private float respawnTimer = 0;
 
+    public GameObject[] endGameUI;
+    public bool GameEnded = false;
     /// <summary>
     /// Called when the local player left the room. We need to load the launcher scene.
     /// </summary>
@@ -147,5 +149,14 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
     #endregion
 
+    public void endMatch()
+    {
+        foreach (GameObject obj in endGameUI)
+            obj.SetActive(true);
+
+        GameEnded = true;
+        Cursor.lockState = CursorLockMode.None;
+
+    }
 }
 

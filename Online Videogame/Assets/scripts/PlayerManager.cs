@@ -160,7 +160,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
         if (photonView.IsMine)
             GameManager.Instance.secCameraObj.SetActive(false);
 
-        if (photonView.IsMine)
+        if (photonView.IsMine && !GameManager.Instance.GameEnded)
         {
             ProcessInputs();
             if (Health <= 0f)
@@ -301,7 +301,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
         if(other.CompareTag("pickableWeapon") && photonView.IsMine)
         {
 
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) && !GameManager.Instance.GameEnded)
             {
                 currentGunName = other.gameObject.GetComponent<PickableWeapon>().weaponName;
 

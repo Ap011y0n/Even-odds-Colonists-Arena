@@ -17961,7 +17961,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2898774886180373220, guid: 7613e1b13c2de0e43a70071c1438a65c, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2898774886180373220, guid: 7613e1b13c2de0e43a70071c1438a65c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -43180,7 +43180,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2029748314
 MonoBehaviour:
@@ -45878,6 +45878,18 @@ PrefabInstance:
       propertyPath: scoreSenderPrefab
       value: 
       objectReference: {fileID: 1418059839072557075, guid: ecd491537ec00e04aa17bd8bd5be560c, type: 3}
+    - target: {fileID: 668571973155812705, guid: c30edfa32df11194ea9aaae968942162, type: 3}
+      propertyPath: endGameUI.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 668571973155812705, guid: c30edfa32df11194ea9aaae968942162, type: 3}
+      propertyPath: endGameUI.Array.data[0]
+      value: 
+      objectReference: {fileID: 54813372}
+    - target: {fileID: 668571973155812705, guid: c30edfa32df11194ea9aaae968942162, type: 3}
+      propertyPath: endGameUI.Array.data[1]
+      value: 
+      objectReference: {fileID: 2092029286}
     - target: {fileID: 6180957951032797594, guid: c30edfa32df11194ea9aaae968942162, type: 3}
       propertyPath: m_Name
       value: GameManager

@@ -35,27 +35,31 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
             velocity.y = -2f;
         }
 
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if(!GameManager.Instance.GameEnded)
         {
-            velocity.y = Mathf.Sqrt(3 * -2 * gravity);
-            animator.SetTrigger("Jump");
+            if (Input.GetButtonDown("Jump") && isGrounded)
+            {
+                velocity.y = Mathf.Sqrt(3 * -2 * gravity);
+                animator.SetTrigger("Jump");
+            }
+
+            float x = Input.GetAxis("Horizontal");
+            float z = Input.GetAxis("Vertical");
+            Vector2 input = new Vector2(x, z);
+
+            currentAnimBlendVec = Vector2.SmoothDamp(currentAnimBlendVec, input, ref animVelocity, animSmoothTime);
+
+            Vector3 move = transform.right * x + transform.forward * z;
+            controller.Move(move * speed * Time.deltaTime);
+
+
+            velocity.y += gravity * Time.deltaTime;
+            controller.Move(velocity * Time.deltaTime);
+
+            animator.SetFloat("MoveX", currentAnimBlendVec.x);
+            animator.SetFloat("MoveZ", currentAnimBlendVec.y);
         }
-
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
-        Vector2 input = new Vector2(x, z);
-
-        currentAnimBlendVec = Vector2.SmoothDamp(currentAnimBlendVec, input, ref animVelocity, animSmoothTime);
-
-        Vector3 move = transform.right * x + transform.forward * z;
-        controller.Move(move * speed * Time.deltaTime);
-
-
-        velocity.y += gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
-
-        animator.SetFloat("MoveX", currentAnimBlendVec.x);
-        animator.SetFloat("MoveZ", currentAnimBlendVec.y);
+       
 
     }
 }

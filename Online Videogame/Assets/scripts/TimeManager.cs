@@ -38,7 +38,7 @@ public class TimeManager : MonoBehaviour
     void Update()
     {
 
-        
+        if(timer > 0)
         timer -= Time.deltaTime;
         if(timer <= update)
         {
@@ -49,7 +49,7 @@ public class TimeManager : MonoBehaviour
         }
         if (timer <= 0)
         {
-            GameManager.Instance.LeaveRoom();
+            GameManager.Instance.endMatch();
         }
     }
 

@@ -18,7 +18,7 @@ public class PlayerLook : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
-        if (photonView.IsMine == false && PhotonNetwork.IsConnected == true)
+        if (GameManager.Instance.GameEnded || (photonView.IsMine == false && PhotonNetwork.IsConnected == true))
         {
             return;
         }
