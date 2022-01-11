@@ -11,7 +11,6 @@ public class weaponSpawn : MonoBehaviourPunCallbacks
     float counter = 0;
     private GameObject spawnGun = null;
     bool spawned = false;
-    public static weaponSpawn instance;
     public GameObject gun;
     string gunName = "PickableRifle";
 
@@ -20,10 +19,15 @@ public class weaponSpawn : MonoBehaviourPunCallbacks
     void Awake()
     {
 
-        if (instance == null)
-            instance = this;
-        else
-            DestroyImmediate(this);
+        GameObject[] permanentOBJ = GameObject.FindGameObjectsWithTag("permanent");
+        int duplicated = 0;
+        for (int i = 0; i < permanentOBJ.Length; i++)
+        {
+            if (permanentOBJ[i].name == gameObject.name)
+                duplicated++;
+        }
+        if (duplicated > 1)
+            DestroyImmediate(gameObject);
 
     }
 

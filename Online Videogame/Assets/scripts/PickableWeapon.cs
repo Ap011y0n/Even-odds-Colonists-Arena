@@ -37,7 +37,7 @@ public class PickableWeapon : MonoBehaviourPunCallbacks, IPunObservable
     // Update is called once per frame
     void Update()
     {
-        if (destroy)
+        if (destroy && photonView.IsMine)
         {
             destroyWeapon();
         }

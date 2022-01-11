@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
+
 public class boostSpawn : MonoBehaviourPunCallbacks
 {
 
@@ -11,7 +12,6 @@ public class boostSpawn : MonoBehaviourPunCallbacks
     float counter = 0;
     private GameObject spawnBoost = null;
     bool spawned = false;
-    public static boostSpawn instance;
     public GameObject boost;
     string boostName = "SpeedBoost";
 
@@ -19,11 +19,16 @@ public class boostSpawn : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Awake()
     {
+        GameObject[] permanentOBJ = GameObject.FindGameObjectsWithTag("permanent"); 
+        int duplicated = 0;
+        for (int i = 0; i < permanentOBJ.Length; i++)
+        {
+            if (permanentOBJ[i].name == gameObject.name)
+                duplicated++;
+        }
+        if (duplicated > 1)
+            DestroyImmediate(gameObject);
 
-        if (instance == null)
-            instance = this;
-        else
-            DestroyImmediate(this);
 
     }
 

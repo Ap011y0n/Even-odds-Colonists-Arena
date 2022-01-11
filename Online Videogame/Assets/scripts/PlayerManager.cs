@@ -28,6 +28,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
             stream.SendNext(deleteFloorGun);
             stream.SendNext(swap1);
             stream.SendNext(swap2);
+            stream.SendNext(throwWeapon);
 
 
         }
@@ -42,6 +43,8 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
             this.deleteFloorGun = (bool)stream.ReceiveNext();
             this.swap1 = (bool)stream.ReceiveNext();
             this.swap2 = (bool)stream.ReceiveNext();
+            this.throwWeapon = (bool)stream.ReceiveNext();
+
         }
     }
 
@@ -80,7 +83,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
     public GameObject[] weaponSlots = new GameObject[2];
     public bool swap1 = false;
     public bool swap2 = false;
-
+    public bool throwWeapon = false;
     public string currentGunName = "pistol";
     private string foundWeapon;
     public List<GameObject> weapons = new List<GameObject>();
@@ -193,6 +196,8 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
             swaptoSlot1();
         if (swap2)
             swaptoSlot2();
+        if(throwWeapon)
+            ThrowWeapon();
 
         currentBullets = activegun.GetComponent<weapon>().returnAmmo();
 
@@ -261,7 +266,61 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
         currentGunName = activegun.GetComponent<weapon>().weaponName;
         swap2 = false;
     }
+    void ThrowWeapon()
+    {
+        throwWeapon = false;
+        if(weaponSlots[1] == activegun)
+        {
+            weaponSlots[1].SetActive(false);
+            if (weaponSlots[0].name != weapons[0].name)
+            {
+                weaponSlots[1] = weapons[0];
+                activegun = weapons[0];
+                currentGunName = activegun.GetComponent<weapon>().weaponName;
+                activegun.SetActive(true);
+            }
+            else
+            {
+                activegun = weaponSlots[0];
+                currentGunName = activegun.GetComponent<weapon>().weaponName;
+                activegun.SetActive(true); 
+                weaponSlots[1] = null;
+            }
+        }
+        else if (weaponSlots[0] == activegun)
+        {
+            weaponSlots[0].SetActive(false);
+            if (weaponSlots[1].name != weapons[0].name)
+            {
+                weaponSlots[0] = weapons[0];
+                activegun = weapons[0];
+                currentGunName = activegun.GetComponent<weapon>().weaponName;
+                activegun.SetActive(true);
+            }
+            else
+            {
+                activegun = weaponSlots[1];
+                currentGunName = activegun.GetComponent<weapon>().weaponName;
+                activegun.SetActive(true);
+                weaponSlots[0] = null;
+            }
 
+
+        }
+
+    }
+
+    public void receiveRay(float rayDamage, string other)
+    {
+        Health -= rayDamage;
+
+        if (PhotonNetwork.IsMasterClient && Health <= 0f)
+        {
+            string killer = other;
+            ScoreManager.instance.AddScore(killer);
+
+        }
+    }
     void OnTriggerEnter(Collider other)
     {
         
@@ -275,7 +334,6 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
         if (other.CompareTag("bullet"))
         {
             Health -= 10f;
-            Debug.Log("ouchies" + Health.ToString());
 
             if (PhotonNetwork.IsMasterClient && Health <= 0f)
             {
@@ -376,6 +434,10 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
         if (Input.GetKeyDown(KeyCode.Alpha2) && weaponSlots[1] != null)
         {
             swap2 = true;
+        }
+        if (Input.GetKeyDown(KeyCode.F) && weaponSlots[1] != null)
+        {
+            throwWeapon = true;
         }
     }
 
