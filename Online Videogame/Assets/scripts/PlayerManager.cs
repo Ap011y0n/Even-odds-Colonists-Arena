@@ -241,6 +241,8 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
                     inactivegun = activegun;
                     activegun = weapons[i];
                     activegun.SetActive(true);
+                    activegun.GetComponent<weapon>().setMaxAmmo();
+
                 }
 
             }
@@ -274,6 +276,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
         throwWeapon = false;
         if(weaponSlots[1] == activegun)
         {
+            weaponSlots[1].GetComponent<weapon>().setMaxAmmo();
             weaponSlots[1].SetActive(false);
             if (weaponSlots[0].name != weapons[0].name)
             {
@@ -292,6 +295,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
         }
         else if (weaponSlots[0] == activegun)
         {
+            weaponSlots[0].GetComponent<weapon>().setMaxAmmo();
             weaponSlots[0].SetActive(false);
             if (weaponSlots[1].name != weapons[0].name)
             {
@@ -386,7 +390,8 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
                         activegun.SetActive(false);
                         activegun = weapons[i];
                         activegun.SetActive(true);
-                        
+                        activegun.GetComponent<weapon>().setMaxAmmo();
+
                     }
 
                 }

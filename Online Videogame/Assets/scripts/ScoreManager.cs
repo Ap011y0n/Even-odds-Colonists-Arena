@@ -56,8 +56,12 @@ public class ScoreManager: MonoBehaviour
         if(scoreUI == null)
         {
             scoreUI = GameObject.Find("ScorePanel");
-            scoreUI.SetActive(false);
-            childs.Clear();
+            if(scoreUI)
+            {
+                scoreUI.SetActive(false);
+                childs.Clear();
+            }
+        
         }
         else
         {

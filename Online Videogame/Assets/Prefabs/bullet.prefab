@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 5256478703002811286}
   - component: {fileID: 5256478703002811289}
   - component: {fileID: 5256478703002811288}
-  - component: {fileID: 5256478703002811291}
   - component: {fileID: 5256478703002811290}
   - component: {fileID: 5256478703002811293}
+  - component: {fileID: 6905754116838760252}
   m_Layer: 0
   m_Name: bullet
   m_TagString: bullet
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 5256478703002811292}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.86193466, y: 1.643, z: -1.2697043}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 0.153, y: 0.153, z: 0.153}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7f80869e23690e148b7565fe48fb519e, type: 2}
+  - {fileID: 2100000, guid: 7576666e6f4bb0b4c8c56e5c038259d6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -85,20 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &5256478703002811291
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5256478703002811292}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5256478703002811290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,7 +100,8 @@ MonoBehaviour:
   speed: 50
   body: {fileID: 5256478703002811293}
   lifetime: 4
-  parent: 
+  damage: 35
+  parent: Albert
   impactParticles: {fileID: 4360282738942825906, guid: 7e0777a28d61a184eb6f44e1538bd5e7, type: 3}
 --- !u!54 &5256478703002811293
 Rigidbody:
@@ -132,3 +119,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!135 &6905754116838760252
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5256478703002811292}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.59417105
+  m_Center: {x: 0, y: 0, z: -0.008763052}

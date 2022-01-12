@@ -80,7 +80,9 @@ public class weapon : MonoBehaviour
     }
     public void setMaxAmmo()
     {
+
         ammo = maxammo;
+
     }
 
 }
