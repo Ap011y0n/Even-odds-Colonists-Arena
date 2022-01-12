@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 6254478820665957049}
   - component: {fileID: 3811258004454115721}
   - component: {fileID: 3446219047443172724}
-  m_Layer: 0
+  - component: {fileID: -4794551654389474389}
+  m_Layer: 6
   m_Name: SpeedBoost
   m_TagString: speedBoost
   m_Icon: {fileID: 0}
@@ -84,6 +85,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroy: 0
   boostName: speed
+--- !u!114 &-4794551654389474389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2371935449229130819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de8467188cbd40e44827ebb78fd3e78f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8545691890281168063
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -91,9 +104,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7527767925599017679}
     m_Modifications:
+    - target: {fileID: 100000, guid: 034e51e6d8986d04795f48b487231687, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 034e51e6d8986d04795f48b487231687, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: 034e51e6d8986d04795f48b487231687, type: 3}
       propertyPath: m_Name
       value: PowerUpContainerElectricSpark
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 034e51e6d8986d04795f48b487231687, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: 034e51e6d8986d04795f48b487231687, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 034e51e6d8986d04795f48b487231687, type: 3}
       propertyPath: m_RootOrder

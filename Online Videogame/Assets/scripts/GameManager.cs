@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public GameObject[] endGameUI;
     public bool GameEnded = false;
+    public Vector3[] startingPositions;
     /// <summary>
     /// Called when the local player left the room. We need to load the launcher scene.
     /// </summary>
@@ -58,7 +59,8 @@ public class GameManager : MonoBehaviourPunCallbacks
                 secCameraObj.SetActive(false);
                 Debug.LogFormat("We are Instantiating LocalPlayer from {0}", SceneManagerHelper.ActiveSceneName);
                 // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
-                PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
+                Vector3 SpawnPos = startingPositions[Random.Range(0, startingPositions.Length - 1)];
+                PhotonNetwork.Instantiate(this.playerPrefab.name, SpawnPos, Quaternion.identity, 0);
             }
             else
             {

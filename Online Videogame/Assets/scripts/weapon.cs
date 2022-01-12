@@ -21,6 +21,7 @@ public class weapon : MonoBehaviour
     public GameObject RayParticles;
     public ParticleSystem MuzzleParticles;
     public AudioSource shootFX;
+    public LayerMask IgnoreMe;
 
     // Start is called before the first frame update
     void Start()
@@ -51,7 +52,7 @@ public class weapon : MonoBehaviour
             if (hitscan)
             {
                 RaycastHit hit;
-                if (Physics.Raycast(shootpoint.position, shootpoint.TransformDirection(Vector3.forward), out hit, RayDistance))
+                if (Physics.Raycast(shootpoint.position, shootpoint.TransformDirection(Vector3.forward), out hit, RayDistance, ~IgnoreMe))
                 {
                     MuzzleParticles.Play(true);
 

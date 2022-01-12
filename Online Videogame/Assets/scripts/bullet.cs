@@ -7,6 +7,7 @@ public class bullet : MonoBehaviour
     public float speed;
     public Rigidbody body;
     public float lifetime;
+    public float damage = 35;
     public string parent;
     public GameObject impactParticles;
 

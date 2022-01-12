@@ -336,7 +336,8 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
         // we should be using tags but for the sake of distribution, let's simply check by name.
         if (other.CompareTag("bullet"))
         {
-            Health -= 10f;
+            Health -= other.GetComponent<bullet>().damage;
+            ;
 
             if (PhotonNetwork.IsMasterClient && Health <= 0f)
             {
@@ -396,8 +397,11 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
         if(other.CompareTag("speedBoost") && photonView.IsMine)
         {
             speedBoostCounter = 0f;
-            speedBoost = true;
+
+            if(!speedBoost)
             GetComponent<PlayerMovement>().speed = GetComponent<PlayerMovement>().speed * 1.5f;
+
+            speedBoost = true;
         }
         if (other.CompareTag("healthBoost") && photonView.IsMine)
         {

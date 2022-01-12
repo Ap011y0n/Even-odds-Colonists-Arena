@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 2974700676537320656}
   - component: {fileID: 4846470058057069718}
   - component: {fileID: 8807317372446331503}
-  m_Layer: 0
+  - component: {fileID: 853726553379473894}
+  m_Layer: 6
   m_Name: Pickable Plasma Rifle
   m_TagString: pickableWeapon
   m_Icon: {fileID: 0}
@@ -84,6 +85,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroy: 0
   weaponName: Plasma RIfle
+--- !u!114 &853726553379473894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4487824616845669613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de8467188cbd40e44827ebb78fd3e78f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &535363177089253541
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -91,9 +104,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3276137405836032770}
     m_Modifications:
+    - target: {fileID: 3997372562079053219, guid: 06c813cf854462d4c86a7cd38f98536b, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5783954524288184859, guid: 06c813cf854462d4c86a7cd38f98536b, type: 3}
       propertyPath: m_Name
       value: Sci-Fi Shotgun
+      objectReference: {fileID: 0}
+    - target: {fileID: 5783954524288184859, guid: 06c813cf854462d4c86a7cd38f98536b, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7358848969765748744, guid: 06c813cf854462d4c86a7cd38f98536b, type: 3}
       propertyPath: m_RootOrder
@@ -121,7 +142,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7358848969765748744, guid: 06c813cf854462d4c86a7cd38f98536b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.1592
+      value: -0.0253
       objectReference: {fileID: 0}
     - target: {fileID: 7358848969765748744, guid: 06c813cf854462d4c86a7cd38f98536b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -150,6 +171,10 @@ PrefabInstance:
     - target: {fileID: 7358848969765748744, guid: 06c813cf854462d4c86a7cd38f98536b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8901563087767012621, guid: 06c813cf854462d4c86a7cd38f98536b, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3256817815823114824, guid: 06c813cf854462d4c86a7cd38f98536b, type: 3}

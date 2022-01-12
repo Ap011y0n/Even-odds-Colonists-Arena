@@ -61,7 +61,6 @@ public class TimeManager : MonoBehaviour
     }
     public void setTime(float t)
     {
-        Debug.Log("Hey");
         timer = t;
     }
 }

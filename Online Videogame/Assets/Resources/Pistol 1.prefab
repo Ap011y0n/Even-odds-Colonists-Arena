@@ -57,10 +57,14 @@ MonoBehaviour:
   maxammo: 20
   hitscan: 1
   RayDistance: 40
-  rayDamage: 10
+  rayDamage: 25
   shootpoint: {fileID: 1700459806695644420}
   RayParticles: {fileID: 1628932371466270870, guid: 3994b9832e3e4444d88c48a58f5f1f89, type: 3}
   MuzzleParticles: {fileID: 1452737318831088588}
+  shootFX: {fileID: 0}
+  IgnoreMe:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &3026252771673044535
 GameObject:
   m_ObjectHideFlags: 0

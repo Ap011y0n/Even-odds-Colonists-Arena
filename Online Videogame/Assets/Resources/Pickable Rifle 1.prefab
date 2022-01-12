@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 7382254287123147044}
   - component: {fileID: 1078249552366267329}
   - component: {fileID: 3659061625126656796}
-  m_Layer: 0
+  - component: {fileID: 9017283267536044307}
+  m_Layer: 6
   m_Name: Pickable Rifle 1
   m_TagString: pickableWeapon
   m_Icon: {fileID: 0}
@@ -84,6 +85,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroy: 0
   weaponName: Rifle 1
+--- !u!114 &9017283267536044307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3708387260901783703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de8467188cbd40e44827ebb78fd3e78f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &460911129363006215
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -91,9 +104,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1648186158365489676}
     m_Modifications:
+    - target: {fileID: 100000, guid: 9a21925963ad72641b17d3da3e0c173f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 9a21925963ad72641b17d3da3e0c173f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: 9a21925963ad72641b17d3da3e0c173f, type: 3}
       propertyPath: m_Name
       value: rifle
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 9a21925963ad72641b17d3da3e0c173f, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 9a21925963ad72641b17d3da3e0c173f, type: 3}
       propertyPath: m_RootOrder

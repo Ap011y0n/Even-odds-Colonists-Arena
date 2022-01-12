@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 5336409852595522968}
   - component: {fileID: 2893190932415143592}
   - component: {fileID: 3679879410417097301}
-  m_Layer: 0
+  - component: {fileID: -248653183004018706}
+  m_Layer: 6
   m_Name: HealthBoost
   m_TagString: healthBoost
   m_Icon: {fileID: 0}
@@ -84,6 +85,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroy: 0
   boostName: health
+--- !u!114 &-248653183004018706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4334764789756799842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de8467188cbd40e44827ebb78fd3e78f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3485077743533384984
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -91,9 +104,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8411283941999169006}
     m_Modifications:
+    - target: {fileID: 100000, guid: aaf860cd8993a6c4b984c97449417579, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: aaf860cd8993a6c4b984c97449417579, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: aaf860cd8993a6c4b984c97449417579, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 100008, guid: aaf860cd8993a6c4b984c97449417579, type: 3}
       propertyPath: m_Name
       value: PowerUpContainerGreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: aaf860cd8993a6c4b984c97449417579, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 118312, guid: aaf860cd8993a6c4b984c97449417579, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: aaf860cd8993a6c4b984c97449417579, type: 3}
       propertyPath: m_RootOrder
