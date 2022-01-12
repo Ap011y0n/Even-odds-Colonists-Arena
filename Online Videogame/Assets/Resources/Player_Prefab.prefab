@@ -4698,7 +4698,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9060824468593484170, guid: f0fac15c86e920d4d9de82adb78844e5, type: 3}
       propertyPath: m_Name
-      value: Rifle V2
+      value: Plasma RIfle
       objectReference: {fileID: 0}
     - target: {fileID: 9060824468593484170, guid: f0fac15c86e920d4d9de82adb78844e5, type: 3}
       propertyPath: m_IsActive
