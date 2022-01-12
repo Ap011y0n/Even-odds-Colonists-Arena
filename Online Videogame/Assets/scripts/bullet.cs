@@ -8,6 +8,7 @@ public class bullet : MonoBehaviour
     public Rigidbody body;
     public float lifetime;
     public string parent;
+    public GameObject impactParticles;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,5 +29,9 @@ public class bullet : MonoBehaviour
     public string returnParent()
     {
         return parent;
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        Instantiate(impactParticles, transform.position, transform.rotation);
     }
 }
