@@ -363,6 +363,12 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
         }
 
 
+        if (other.CompareTag("pickableWeapon") && photonView.IsMine)
+        {
+            if (GunText != null)
+                other.GetComponent<PickableWeapon>().SetGunText(GunText);
+        }
+
     }
 
     void OnTriggerStay(Collider other)
@@ -378,11 +384,13 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
         {
             if (GunText != null)
                 GunText.SetActive(true);
+          
             if (Input.GetKeyDown(KeyCode.E) && !GameManager.Instance.GameEnded)
             {
-                currentGunName = other.gameObject.GetComponent<PickableWeapon>().weaponName;
                 if (GunText != null)
                     other.GetComponent<PickableWeapon>().SetGunText(GunText);
+                currentGunName = other.gameObject.GetComponent<PickableWeapon>().weaponName;
+               
 
                 for (int i = 0; i < weapons.Count; i++)
                 {
