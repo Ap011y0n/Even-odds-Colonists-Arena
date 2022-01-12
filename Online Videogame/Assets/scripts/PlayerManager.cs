@@ -341,17 +341,10 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
     void OnTriggerEnter(Collider other)
     {
         
-
-        //if (!photonView.IsMine)
-        //{
-        //    return;
-        //}
-        // We are only interested in Beamers
-        // we should be using tags but for the sake of distribution, let's simply check by name.
         if (other.CompareTag("bullet"))
         {
             Health -= other.GetComponent<bullet>().damage;
-            ;
+            
 
             if (PhotonNetwork.IsMasterClient && Health <= 0f)
             {
@@ -385,10 +378,11 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
             if (GunText != null)
                 GunText.SetActive(true);
           
-            if (Input.GetKeyDown(KeyCode.E) && !GameManager.Instance.GameEnded)
+            if (Input.GetKey(KeyCode.E) && !GameManager.Instance.GameEnded && currentGunName != other.gameObject.GetComponent<PickableWeapon>().weaponName)
             {
                 if (GunText != null)
                     other.GetComponent<PickableWeapon>().SetGunText(GunText);
+
                 currentGunName = other.gameObject.GetComponent<PickableWeapon>().weaponName;
                
 
