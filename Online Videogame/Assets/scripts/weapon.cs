@@ -20,6 +20,7 @@ public class weapon : MonoBehaviour
     public Transform shootpoint;
     public GameObject RayParticles;
     public ParticleSystem MuzzleParticles;
+    public AudioSource shootFX;
 
     // Start is called before the first frame update
     void Start()
@@ -45,8 +46,8 @@ public class weapon : MonoBehaviour
     {
         if(lastShot >= shotCD && (ammo > 0 || unlimitedAmmo) && !GameManager.Instance.GameEnded)
         {
-          
             lastShot = 0;
+            shootFX.Play();
             if (hitscan)
             {
                 RaycastHit hit;
