@@ -171,7 +171,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 8df53ee0e40115142a41501ff51a472d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 3b5401f7600a3ea4ca55ad40659fd1be, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.381
   m_Pitch: 1
@@ -267,10 +267,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 8df53ee0e40115142a41501ff51a472d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 9d8e66c79f328e348a99ce98b5336ef8, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.381
-  m_Pitch: 1
+  m_Pitch: 0.5
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -1330,7 +1330,7 @@ MonoBehaviour:
   - {fileID: 4021155035111565901}
   - {fileID: 4021155035111565900}
   - {fileID: 4021155035111565936}
-  sceneViewId: 2
+  sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!114 &4021155035111565901
@@ -1561,7 +1561,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 4021155035111565941}
-  speed: 12
+  speed: 5
   gravity: -9.81
   velocity: {x: 0, y: 0, z: 0}
   groundDistance: 0.4
@@ -3898,7 +3898,7 @@ MonoBehaviour:
   observableSearch: 0
   ObservedComponents:
   - {fileID: 2109779544}
-  sceneViewId: 1
+  sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!1 &4021155035629796142
