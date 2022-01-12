@@ -19,7 +19,7 @@ public class ScoreManager: MonoBehaviour
     public GameObject scoreSenderPrefab;
 
     List<request> requests = new List<request>();
-    public float height = 20;
+    public float height = 45;
     public float width = 0;
     public bool send = false;
     void Awake()
@@ -41,6 +41,7 @@ public class ScoreManager: MonoBehaviour
         }
 
         scoreUI = GameObject.Find("ScorePanel");
+        scoreUI.SetActive(false);
         foreach (KeyValuePair<string, int> entry in scores)
         {
             requestScore(entry.Key);
@@ -55,6 +56,7 @@ public class ScoreManager: MonoBehaviour
         if(scoreUI == null)
         {
             scoreUI = GameObject.Find("ScorePanel");
+            scoreUI.SetActive(false);
             childs.Clear();
         }
         else
@@ -68,6 +70,15 @@ public class ScoreManager: MonoBehaviour
                 requests.Clear();
             }
     
+        }
+
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            scoreUI.SetActive(true);
+        }
+        if (Input.GetKeyUp(KeyCode.Tab))
+        {
+            scoreUI.SetActive(false);
         }
 
     }

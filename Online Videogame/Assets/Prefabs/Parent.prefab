@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2963658710534311875
 RectTransform:
   m_ObjectHideFlags: 0
@@ -246,5 +246,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerName: {fileID: 6908583605763436160}
   score: {fileID: 8557666165584187414}
-  Panel: {fileID: 0}
-  Score: {fileID: 1162704997365024040}
