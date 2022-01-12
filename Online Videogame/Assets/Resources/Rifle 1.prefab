@@ -83,7 +83,10 @@ MonoBehaviour:
   player: {fileID: 0}
   unlimitedAmmo: 0
   ammo: 20
-  maxammo: 20
+  maxammo: 32
+  hitscan: 1
+  RayDistance: 20
+  rayDamage: 10
 --- !u!1 &5946913083773470056
 GameObject:
   m_ObjectHideFlags: 0
