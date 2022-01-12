@@ -96,7 +96,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
 
 
     private PlayerUI myUI;
-
+    GameObject emptyUi = null;
     #region MonoBehaviour CallBacks
 
     /// <summary>
@@ -149,8 +149,11 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
     {
 
         //WIP
-        if(myUI == null && !photonView.IsMine)
+        if(emptyUi == null && !photonView.IsMine)
+        {
+            emptyUi = GameObject.Find("EmptyUi");
             ScoreManager.instance.requestScore(photonView.Owner.NickName);
+        }
 
         if (myUI == null && photonView.IsMine)
         {
@@ -209,7 +212,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
         {
             speedBoost = false;
             speedBoostCounter = 0f;
-            GetComponent<PlayerMovement>().speed = GetComponent<PlayerMovement>().speed / 2;
+            GetComponent<PlayerMovement>().speed = GetComponent<PlayerMovement>().speed / 1.5f;
         }
 
     }
