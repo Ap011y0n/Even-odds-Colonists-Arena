@@ -9,6 +9,8 @@ public class ScoreText : MonoBehaviour
 {
     public Text PlayerName;
     public Text score;
+    public GameObject Panel;
+    public GameObject Score;
 
 
     public void ChangeName(string n)
@@ -24,5 +26,18 @@ public class ScoreText : MonoBehaviour
         int points = Convert.ToInt32(score.text);
         points++;
         score.text = points.ToString();
+    }
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            Panel.SetActive(true);
+            Score.SetActive(true);
+        }
+        if (Input.GetKeyUp(KeyCode.Tab))
+        {
+            Panel.SetActive(false);
+            Score.SetActive(false);
+        }
     }
 }
