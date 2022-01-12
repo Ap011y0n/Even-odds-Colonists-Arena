@@ -4007,6 +4007,10 @@ PrefabInstance:
       propertyPath: gun
       value: 
       objectReference: {fileID: 3957935969147111084, guid: a32f9e055581a324caff84a83b7f76a4, type: 3}
+    - target: {fileID: 8470002543214835269, guid: 345e93f11c732054782f43833ba0e6c4, type: 3}
+      propertyPath: spawnTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8470002543214835274, guid: 345e93f11c732054782f43833ba0e6c4, type: 3}
       propertyPath: m_Name
       value: Spawner (1)

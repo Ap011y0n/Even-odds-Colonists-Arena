@@ -30,8 +30,10 @@ public class bullet : MonoBehaviour
     {
         return parent;
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
         Instantiate(impactParticles, transform.position, transform.rotation);
+
     }
+
 }

@@ -17,6 +17,10 @@ public class weapon : MonoBehaviour
     public bool hitscan = false;
     public float RayDistance = 20;
     public float rayDamage = 10;
+    public Transform shootpoint;
+    public GameObject RayParticles;
+    public ParticleSystem MuzzleParticles;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,16 +50,21 @@ public class weapon : MonoBehaviour
             if (hitscan)
             {
                 RaycastHit hit;
-                if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, RayDistance))
+                if (Physics.Raycast(shootpoint.position, shootpoint.TransformDirection(Vector3.forward), out hit, RayDistance))
                 {
-                   GameObject enemy = hit.collider.gameObject;
+                    MuzzleParticles.Play(true);
+
+                    GameObject enemy = hit.collider.gameObject;
+                   Instantiate(RayParticles, hit.point, Quaternion.identity);
+
                     if (enemy.GetComponent<PlayerManager>() != null)
                         enemy.GetComponent<PlayerManager>().receiveRay(rayDamage, player.GetComponent<PlayerManager>().photonView.Owner.NickName);
                 }
             }
             else
             {
-                Instantiate(projectile, transform.position, transform.rotation);
+                Instantiate(projectile, shootpoint.position, shootpoint.rotation);
+                MuzzleParticles.Play(true);
                 projectile.GetComponent<bullet>().setParent(player.GetComponent<PlayerManager>().photonView.Owner.NickName);
             }
             if (!unlimitedAmmo)

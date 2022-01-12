@@ -2306,9 +2306,21 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 6983088491053165949}
+    - target: {fileID: 270308882346178532, guid: e5ce4d947cdc06946882ddfe31d61cb6, type: 3}
+      propertyPath: RayDistance
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 5190200962141320070, guid: e5ce4d947cdc06946882ddfe31d61cb6, type: 3}
       propertyPath: m_Name
       value: riflev2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5190200962141320070, guid: e5ce4d947cdc06946882ddfe31d61cb6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8710380086905969466, guid: e5ce4d947cdc06946882ddfe31d61cb6, type: 3}
+      propertyPath: looping
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5ce4d947cdc06946882ddfe31d61cb6, type: 3}
@@ -2381,6 +2393,10 @@ PrefabInstance:
       propertyPath: maxammo
       value: 32
       objectReference: {fileID: 0}
+    - target: {fileID: 3609410355387685709, guid: f8b2733974b2b9e4e91af2fa9c57f2fb, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6476734675361779484, guid: f8b2733974b2b9e4e91af2fa9c57f2fb, type: 3}
       propertyPath: m_Name
       value: rifle
@@ -2408,6 +2424,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1167749061}
     m_Modifications:
+    - target: {fileID: 683091271597141247, guid: ea13db7e986717247b8c142ee56cbea2, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4684052658992464138, guid: ea13db7e986717247b8c142ee56cbea2, type: 3}
       propertyPath: sceneViewId
       value: 0
@@ -2424,6 +2444,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 6983088491053165949}
+    - target: {fileID: 5180268833974018888, guid: ea13db7e986717247b8c142ee56cbea2, type: 3}
+      propertyPath: RayDistance
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 8028301608269747193, guid: ea13db7e986717247b8c142ee56cbea2, type: 3}
       propertyPath: m_RootOrder
       value: 0

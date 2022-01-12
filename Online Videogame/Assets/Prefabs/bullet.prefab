@@ -114,6 +114,8 @@ MonoBehaviour:
   speed: 50
   body: {fileID: 5256478703002811293}
   lifetime: 4
+  parent: 
+  impactParticles: {fileID: 4360282738942825906, guid: 7e0777a28d61a184eb6f44e1538bd5e7, type: 3}
 --- !u!54 &5256478703002811293
 Rigidbody:
   m_ObjectHideFlags: 0
