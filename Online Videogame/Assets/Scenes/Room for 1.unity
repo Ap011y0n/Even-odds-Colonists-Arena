@@ -4006,7 +4006,7 @@ PrefabInstance:
     - target: {fileID: 8470002543214835269, guid: 345e93f11c732054782f43833ba0e6c4, type: 3}
       propertyPath: gun
       value: 
-      objectReference: {fileID: 3957935969147111084, guid: a32f9e055581a324caff84a83b7f76a4, type: 3}
+      objectReference: {fileID: 4487824616845669613, guid: 620d65427ff91a34facd2dcd6f858836, type: 3}
     - target: {fileID: 8470002543214835269, guid: 345e93f11c732054782f43833ba0e6c4, type: 3}
       propertyPath: spawnTime
       value: 5
@@ -45933,7 +45933,7 @@ PrefabInstance:
     - target: {fileID: 668571973155812705, guid: c30edfa32df11194ea9aaae968942162, type: 3}
       propertyPath: playerPrefab
       value: 
-      objectReference: {fileID: 6983088491053165949, guid: 6f7ecdbd5e7fcd54dae767e722339ecf, type: 3}
+      objectReference: {fileID: 4021155034889958136, guid: ed80600d425fe0d4f9c459d413a6900f, type: 3}
     - target: {fileID: 668571973155812705, guid: c30edfa32df11194ea9aaae968942162, type: 3}
       propertyPath: secCameraObj
       value: 
@@ -46179,7 +46179,7 @@ PrefabInstance:
     - target: {fileID: 8470002543214835269, guid: 345e93f11c732054782f43833ba0e6c4, type: 3}
       propertyPath: gun
       value: 
-      objectReference: {fileID: 1423878041280826505, guid: cf2fa1ece1854a148a362827d12ec6fe, type: 3}
+      objectReference: {fileID: 3708387260901783703, guid: f148a472e77f16a418404ff0d8f438dc, type: 3}
     - target: {fileID: 8470002543214835274, guid: 345e93f11c732054782f43833ba0e6c4, type: 3}
       propertyPath: m_Name
       value: Spawner
