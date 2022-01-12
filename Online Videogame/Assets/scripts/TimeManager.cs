@@ -44,7 +44,9 @@ public class TimeManager : MonoBehaviour
         {
             if (UI_timer == null)
                 UI_timer = GameObject.Find("Timer");
-            UI_timer.GetComponent<TMPro.TextMeshProUGUI>().text = update.ToString();
+            string minutes = (update / 60).ToString();
+            string seconds = (update % 60).ToString();
+            UI_timer.GetComponent<TMPro.TextMeshProUGUI>().text = minutes + ":" + seconds;
             update = (int)timer;
         }
         if (timer <= 0)

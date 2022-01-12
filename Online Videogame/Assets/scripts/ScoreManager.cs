@@ -19,7 +19,7 @@ public class ScoreManager: MonoBehaviour
     public GameObject scoreSenderPrefab;
 
     List<request> requests = new List<request>();
-    public float height = 45;
+    public float height = 20;
     public float width = 0;
     public bool send = false;
     void Awake()
@@ -71,7 +71,6 @@ public class ScoreManager: MonoBehaviour
             }
     
         }
-
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             scoreUI.SetActive(true);
@@ -85,10 +84,12 @@ public class ScoreManager: MonoBehaviour
 
     public void Addrequest(request r)
     {
-        if (GameObject.Find(r.name) != null)
+        for(int i = 0; i < childs.Count; i++)
         {
-            return;
+            if (childs[i].name == r.name)
+                return;
         }
+     
 
         if (!scores.ContainsKey(r.name))
             scores.Add(r.name, 0);
