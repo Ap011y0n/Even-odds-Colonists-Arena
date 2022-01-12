@@ -1533,6 +1533,7 @@ MonoBehaviour:
   - {fileID: 4305396488537736896}
   PlayerUiPrefab: {fileID: 523596221601087361, guid: fc4cd95d6ed984b488fb24cc1910ac52, type: 3}
   ScoreUiPrefab: {fileID: 8539646383848421193, guid: d16ddc2171d243548a1ef115adb988ce, type: 3}
+  GunText: {fileID: 0}
 --- !u!114 &4021155035111565939
 MonoBehaviour:
   m_ObjectHideFlags: 0
