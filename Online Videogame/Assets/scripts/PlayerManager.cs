@@ -144,7 +144,8 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
         weaponSlots[1] = null;
 
         GunText = GameObject.Find("GunText");
-        GunText.SetActive(false);
+        if (GunText != null)
+            GunText.SetActive(false);
     }
 
     void Update()
@@ -220,6 +221,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
         if(GunText == null)
         {
             GunText = GameObject.Find("GunText");
+            if(GunText != null)
             GunText.SetActive(false);
         }
 
@@ -374,11 +376,13 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
       
         if(other.CompareTag("pickableWeapon") && photonView.IsMine)
         {
-            GunText.SetActive(true);
+            if (GunText != null)
+                GunText.SetActive(true);
             if (Input.GetKeyDown(KeyCode.E) && !GameManager.Instance.GameEnded)
             {
                 currentGunName = other.gameObject.GetComponent<PickableWeapon>().weaponName;
-                other.GetComponent<PickableWeapon>().SetGunText(GunText);
+                if (GunText != null)
+                    other.GetComponent<PickableWeapon>().SetGunText(GunText);
 
                 for (int i = 0; i < weapons.Count; i++)
                 {
@@ -405,7 +409,8 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
                 }
 
                 deleteFloorGun = true;
-                GunText.SetActive(false);
+                if (GunText != null)
+                    GunText.SetActive(false);
             }
         }
         if(other.CompareTag("speedBoost") && photonView.IsMine)
@@ -429,7 +434,8 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (other.CompareTag("pickableWeapon"))
         {
-            GunText.SetActive(false);
+            if (GunText != null)
+                GunText.SetActive(false);
         }
     }
     #endregion
