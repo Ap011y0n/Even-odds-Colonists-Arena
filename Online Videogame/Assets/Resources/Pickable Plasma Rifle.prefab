@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4846470058057069718}
   - component: {fileID: 8807317372446331503}
   m_Layer: 0
-  m_Name: Pickable Rifle V2
+  m_Name: Pickable Plasma Rifle
   m_TagString: pickableWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,7 +83,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroy: 0
-  weaponName: Rifle V2
+  weaponName: Plasma RIfle
 --- !u!1001 &535363177089253541
 PrefabInstance:
   m_ObjectHideFlags: 0

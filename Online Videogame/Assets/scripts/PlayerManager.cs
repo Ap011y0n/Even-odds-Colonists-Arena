@@ -203,9 +203,9 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
 
         if (speedBoost == true)
         {
-            speedBoostCounter++;
+            speedBoostCounter += Time.deltaTime;
         }
-        if(speedBoostCounter >= 1000)
+        if(speedBoostCounter >= 5)
         {
             speedBoost = false;
             speedBoostCounter = 0f;
@@ -394,7 +394,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
         {
             speedBoostCounter = 0f;
             speedBoost = true;
-            GetComponent<PlayerMovement>().speed = GetComponent<PlayerMovement>().speed * 2;
+            GetComponent<PlayerMovement>().speed = GetComponent<PlayerMovement>().speed * 1.5f;
         }
         if (other.CompareTag("healthBoost") && photonView.IsMine)
         {

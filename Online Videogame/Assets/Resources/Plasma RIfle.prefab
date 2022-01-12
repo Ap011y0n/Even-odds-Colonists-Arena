@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 7966404794040561253}
   - component: {fileID: 4929291289745233849}
   m_Layer: 0
-  m_Name: Rifle V2
+  m_Name: Plasma RIfle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +78,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 5256478703002811292, guid: 51247f2604e6a334da122dc63501fd83, type: 3}
   shotCD: 0.2
-  weaponName: Rifle V2
+  weaponName: Plasma RIfle
   player: {fileID: 0}
   unlimitedAmmo: 0
   ammo: 20
@@ -89,6 +89,7 @@ MonoBehaviour:
   shootpoint: {fileID: 8059421371213564372}
   RayParticles: {fileID: 0}
   MuzzleParticles: {fileID: 0}
+  shootFX: {fileID: 0}
 --- !u!1001 &4941727068917503426
 PrefabInstance:
   m_ObjectHideFlags: 0

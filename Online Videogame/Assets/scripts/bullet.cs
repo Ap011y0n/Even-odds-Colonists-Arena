@@ -9,6 +9,7 @@ public class bullet : MonoBehaviour
     public float lifetime;
     public string parent;
     public GameObject impactParticles;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,8 +33,9 @@ public class bullet : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        Instantiate(impactParticles, transform.position, transform.rotation);
-
+        Vector3 position = transform.position ;
+        Instantiate(impactParticles, position, transform.rotation);
+        Destroy(this.gameObject);
     }
 
 }

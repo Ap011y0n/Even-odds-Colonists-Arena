@@ -47,10 +47,10 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
             float z = Input.GetAxis("Vertical");
             Vector2 input = new Vector2(x, z);
 
-            currentAnimBlendVec = Vector2.SmoothDamp(currentAnimBlendVec, input, ref animVelocity, animSmoothTime);
+            currentAnimBlendVec = Vector2.SmoothDamp(currentAnimBlendVec, input/2, ref animVelocity, animSmoothTime);
 
-            Vector3 move = transform.right * x + transform.forward * z;
-            controller.Move(move * speed * Time.deltaTime);
+            Vector3 move = transform.right * x * speed + transform.forward * z *speed;
+            controller.Move(move * Time.deltaTime);
 
 
             velocity.y += gravity * Time.deltaTime;
