@@ -26,6 +26,7 @@ public class PickableWeapon : MonoBehaviourPunCallbacks, IPunObservable
 
     public bool destroy = false;
     public string weaponName;
+    private GameObject GunText;
 
     // Start is called before the first frame update
     void Start()
@@ -75,5 +76,14 @@ public class PickableWeapon : MonoBehaviourPunCallbacks, IPunObservable
         Debug.Log("destroyin gun");
 
         PhotonNetwork.Destroy(photonView);
+        if(GunText != null)
+        {
+            GunText.SetActive(false);
+        }
+    }
+
+    public void SetGunText(GameObject t)
+    {
+        GunText = t;
     }
 }

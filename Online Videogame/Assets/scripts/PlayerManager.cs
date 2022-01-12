@@ -93,6 +93,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
     [SerializeField]
     public GameObject PlayerUiPrefab;
     public GameObject ScoreUiPrefab;
+    public GameObject GunText;
 
 
     private PlayerUI myUI;
@@ -141,8 +142,9 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
 
         weaponSlots[0] = weapons[0];
         weaponSlots[1] = null;
-    
 
+        GunText = GameObject.Find("GunText");
+        GunText.SetActive(false);
     }
 
     void Update()
@@ -213,6 +215,12 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
             speedBoost = false;
             speedBoostCounter = 0f;
             GetComponent<PlayerMovement>().speed = GetComponent<PlayerMovement>().speed / 1.5f;
+        }
+
+        if(GunText == null)
+        {
+            GunText = GameObject.Find("GunText");
+            GunText.SetActive(false);
         }
 
     }
@@ -366,11 +374,11 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
       
         if(other.CompareTag("pickableWeapon") && photonView.IsMine)
         {
-
+            GunText.SetActive(true);
             if (Input.GetKeyDown(KeyCode.E) && !GameManager.Instance.GameEnded)
             {
                 currentGunName = other.gameObject.GetComponent<PickableWeapon>().weaponName;
-
+                other.GetComponent<PickableWeapon>().SetGunText(GunText);
 
                 for (int i = 0; i < weapons.Count; i++)
                 {
@@ -397,6 +405,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
                 }
 
                 deleteFloorGun = true;
+                GunText.SetActive(false);
             }
         }
         if(other.CompareTag("speedBoost") && photonView.IsMine)
@@ -415,6 +424,13 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
                 Health = 100;
         }
 
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("pickableWeapon"))
+        {
+            GunText.SetActive(false);
+        }
     }
     #endregion
 
