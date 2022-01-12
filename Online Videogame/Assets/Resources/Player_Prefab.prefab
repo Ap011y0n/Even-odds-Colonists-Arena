@@ -1330,7 +1330,7 @@ MonoBehaviour:
   - {fileID: 4021155035111565901}
   - {fileID: 4021155035111565900}
   - {fileID: 4021155035111565936}
-  sceneViewId: 0
+  sceneViewId: 2
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!114 &4021155035111565901
@@ -3899,7 +3899,7 @@ MonoBehaviour:
   observableSearch: 0
   ObservedComponents:
   - {fileID: 2109779544}
-  sceneViewId: 0
+  sceneViewId: 1
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!1 &4021155035629796142
@@ -4470,6 +4470,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 4021155034889958136}
+    - target: {fileID: 6555304243421925614, guid: b1b0870ec5973704daeabaccad8b885b, type: 3}
+      propertyPath: maxammo
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6555304243421925614, guid: b1b0870ec5973704daeabaccad8b885b, type: 3}
       propertyPath: shootFX
       value: 
