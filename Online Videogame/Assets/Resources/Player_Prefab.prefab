@@ -1330,7 +1330,7 @@ MonoBehaviour:
   - {fileID: 4021155035111565901}
   - {fileID: 4021155035111565900}
   - {fileID: 4021155035111565936}
-  sceneViewId: 2
+  sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!114 &4021155035111565901
@@ -1531,7 +1531,7 @@ MonoBehaviour:
   - {fileID: 74863249126268682}
   - {fileID: 3986579005228661309}
   - {fileID: 4305396488537736896}
-  PlayerUiPrefab: {fileID: 523596221601087361, guid: fc4cd95d6ed984b488fb24cc1910ac52, type: 3}
+  PlayerUiPrefab: {fileID: 6255863808593268506, guid: fc4cd95d6ed984b488fb24cc1910ac52, type: 3}
   ScoreUiPrefab: {fileID: 8539646383848421193, guid: d16ddc2171d243548a1ef115adb988ce, type: 3}
   GunText: {fileID: 0}
 --- !u!114 &4021155035111565939
@@ -3899,7 +3899,7 @@ MonoBehaviour:
   observableSearch: 0
   ObservedComponents:
   - {fileID: 2109779544}
-  sceneViewId: 1
+  sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!1 &4021155035629796142
