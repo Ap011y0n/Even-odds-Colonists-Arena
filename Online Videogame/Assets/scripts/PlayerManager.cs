@@ -338,13 +338,63 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
 
         }
     }
+
+
+    public void damageEnemy(string enemy, float damage)
+    {
+        photonView.RPC("sendDamage", RpcTarget.AllBuffered, enemy, damage);
+
+    }
+
+    [PunRPC]
+    void sendDamage(string enemy, float damage)
+    {
+        Debug.Log("Send Damage Received");
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        foreach(GameObject player in players)
+        {
+            if(player.GetComponent<PlayerManager>().photonView.Owner.NickName == enemy 
+                && player.GetComponent<PlayerManager>().photonView.IsMine)
+            {
+                player.GetComponent<PlayerManager>().receiveRay(damage, photonView.Owner.NickName);
+                Debug.LogWarning(player.GetComponent<PlayerManager>().photonView.Owner.NickName + "photonview found");
+            }
+
+        }
+     }
     void OnTriggerEnter(Collider other)
     {
         
         if (other.CompareTag("bullet"))
         {
+            bullet b = other.GetComponent<bullet>();
+            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+            foreach (GameObject player in players)
+            {
+                if (player.GetComponent<PlayerManager>().photonView.Owner.NickName == b.returnParent()
+                    && player.GetComponent<PlayerManager>().photonView.IsMine)
+                    player.GetComponent<PlayerManager>().damageEnemy(photonView.Owner.NickName, b.damage);
+
+            }
+        }
+
+
+        if (other.CompareTag("pickableWeapon") && photonView.IsMine)
+        {
+            if (GunText != null)
+                other.GetComponent<PickableWeapon>().SetGunText(GunText);
+        }
+
+    }
+
+    //old
+  /*  void OnTriggerEnter(Collider other)
+    {
+
+        if (other.CompareTag("bullet"))
+        {
             Health -= other.GetComponent<bullet>().damage;
-            
+
 
             if (PhotonNetwork.IsMasterClient && Health <= 0f)
             {
@@ -362,8 +412,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
                 other.GetComponent<PickableWeapon>().SetGunText(GunText);
         }
 
-    }
-
+    }*/
     void OnTriggerStay(Collider other)
     {
         // we dont' do anything if we are not the local player.

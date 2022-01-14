@@ -9,7 +9,7 @@ public class weapon : MonoBehaviour
     public float shotCD = 1;
     float lastShot = 0;
     public string weaponName;
-    public GameObject player;
+    public PlayerManager player;
     public bool unlimitedAmmo = true;
     [HideInInspector]
     public int ammo = 20;
@@ -59,15 +59,17 @@ public class weapon : MonoBehaviour
                     GameObject enemy = hit.collider.gameObject;
                    Instantiate(RayParticles, hit.point, Quaternion.identity);
 
-                    if (enemy.GetComponent<PlayerManager>() != null)
-                        enemy.GetComponent<PlayerManager>().receiveRay(rayDamage, player.GetComponent<PlayerManager>().photonView.Owner.NickName);
+                    if (enemy.GetComponent<PlayerManager>() != null && player.photonView.IsMine)
+                        player.damageEnemy(enemy.GetComponent<PlayerManager>().photonView.Owner.NickName, rayDamage);
+                    //enemy.GetComponent<PlayerManager>().receiveRay(rayDamage, player.GetComponent<PlayerManager>().photonView.Owner.NickName);
+
                 }
             }
             else
             {
                 Instantiate(projectile, shootpoint.position, shootpoint.rotation);
                 MuzzleParticles.Play(true);
-                projectile.GetComponent<bullet>().setParent(player.GetComponent<PlayerManager>().photonView.Owner.NickName);
+                projectile.GetComponent<bullet>().setParent(player.photonView.Owner.NickName);
             }
             if (!unlimitedAmmo)
                 ammo--;

@@ -4469,7 +4469,7 @@ PrefabInstance:
     - target: {fileID: 6555304243421925614, guid: b1b0870ec5973704daeabaccad8b885b, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 4021155034889958136}
+      objectReference: {fileID: 4021155035111565936}
     - target: {fileID: 6555304243421925614, guid: b1b0870ec5973704daeabaccad8b885b, type: 3}
       propertyPath: maxammo
       value: 0
@@ -4710,7 +4710,7 @@ PrefabInstance:
     - target: {fileID: 8656363658175992023, guid: b86df91c77b90024a8431a2b2275edd7, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 4021155034889958136}
+      objectReference: {fileID: 4021155035111565936}
     - target: {fileID: 8656363658175992023, guid: b86df91c77b90024a8431a2b2275edd7, type: 3}
       propertyPath: shootFX
       value: 
@@ -4772,7 +4772,7 @@ PrefabInstance:
     - target: {fileID: 4929291289745233849, guid: f0fac15c86e920d4d9de82adb78844e5, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 4021155034889958136}
+      objectReference: {fileID: 4021155035111565936}
     - target: {fileID: 4929291289745233849, guid: f0fac15c86e920d4d9de82adb78844e5, type: 3}
       propertyPath: shootFX
       value: 

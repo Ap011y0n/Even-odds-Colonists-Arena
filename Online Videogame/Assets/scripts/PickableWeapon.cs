@@ -48,7 +48,6 @@ public class PickableWeapon : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Collision");
 
             if (other.gameObject.GetComponent<PlayerManager>().deleteFloorGun)
             {
