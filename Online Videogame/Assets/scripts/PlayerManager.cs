@@ -349,7 +349,6 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
     [PunRPC]
     void sendDamage(string enemy, float damage)
     {
-        Debug.Log("Send Damage Received");
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         foreach(GameObject player in players)
         {
@@ -357,7 +356,6 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
                 && player.GetComponent<PlayerManager>().photonView.IsMine)
             {
                 player.GetComponent<PlayerManager>().receiveRay(damage, photonView.Owner.NickName);
-                Debug.LogWarning(player.GetComponent<PlayerManager>().photonView.Owner.NickName + "photonview found");
             }
 
         }
