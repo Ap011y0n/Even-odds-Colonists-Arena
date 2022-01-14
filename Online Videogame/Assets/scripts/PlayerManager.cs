@@ -98,6 +98,9 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
 
     private PlayerUI myUI;
     GameObject emptyUi = null;
+
+    public AudioSource hitSFX;
+
     #region MonoBehaviour CallBacks
 
     /// <summary>
@@ -342,6 +345,8 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
 
     public void damageEnemy(string enemy, float damage)
     {
+        myUI.transform.Find("Hitmarker").GetComponent<HitmarkerScript>().Display();
+        hitSFX.Play();
         photonView.RPC("sendDamage", RpcTarget.AllBuffered, enemy, damage);
 
     }
